@@ -1,0 +1,6 @@
+void pausa()
+{
+    printf("\nPresiona Enter para continuar...\n");
+    fflush(stdin);
+    while (getchar() != '\n');
+}

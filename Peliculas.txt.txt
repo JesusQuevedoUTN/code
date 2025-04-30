@@ -1,0 +1,6 @@
+P324324, El peor vecino del mundo, comedia, 2022
+P798230, El Origen, ciencia_ficcion, 2010
+P242514, Babylon, comedia, 2022
+P742523, Batman Inicia, accion, 2005
+P791403, Atrápame si puedes, comedia, 2002
+P564674, Bullet Train, accion, 2022

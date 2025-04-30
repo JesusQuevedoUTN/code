@@ -1,0 +1,39 @@
+44	 Lewis 	 Hamilton 	 Mercedes
+
+77	 Valtteri 	 Bottas 	 Mercedes
+
+33	 Max 	 Verstappen 	 Red Bull
+
+3	 Daniel 	 Ricciardo 	 Renault
+
+31	 Esteban 	 Ocon 	 Renault
+
+23	 Alexander 	 Albon 	 Red Bull
+
+4	 Lando 	 Norris 	 McLaren
+
+10	 Pierre 	 Gasly 	 AlphaTauri
+
+18	 Lance 	 Stroll 	 Racing Point
+
+11	 Sergio 	 Perez 	 Racing Point
+
+26	 Daniil 	 Kvyat 	 AlphaTauri
+
+7	 Kimi 	 Raikkonen 	 Alfa Romeo
+
+5	 Sebastian 	 Vettel 	 Ferrari
+
+16	 Charles 	 Leclerc 	 Ferrari
+
+8	 Romain 	 Grosjean 	 Haas
+
+6	 Nicholas 	 Latifi 	 Williams
+
+20	 Kevin 	 Magnussen 	 Haas
+
+99	 Antonio 	 Giovinazzi 	 Alfa Romeo
+
+63	 George 	 Russell 	 Williams
+
+55	 Carlos 	 Sainz 	 McLaren

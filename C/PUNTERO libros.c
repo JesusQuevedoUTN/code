@@ -11,6 +11,10 @@ typedef char* cadena;
 #define AUTOR_NOMBRE_LEN      40
 #define AUTOR_APELLIDO_LEN AUTOR_NOMBRE_LEN
 
+#define NOMBRE_POR_DEFECTO    "<sin nombre>"
+#define APELLIDO_POR_DEFECTO  "<sin apellido>"
+#define TITULO_POR_DEFECTO    "<sin titulo>"
+
 enum {OPCION_SALIR,
       OPCION_ADD_LIBRO,
       OPCION_MOSTRAR_LIBROS,
@@ -39,22 +43,28 @@ typedef struct
 //0
 int menu();
 void pausa();
+void liberarMemoria(Libro*, int);
 //1
 void agregarNuevoLibro(Libro**, int*);
+void inicializarLibro(Libro*);
+void leerLibro(Libro*);
+void leerCadena(char*, int);
+void leerEntero(int*);
+
 
 //2
 void mostrarListaDeLibros(Libro[], int);
 void mostrarLibro(Libro, int);
 bool existe(char*);
 void cargarCadena(cadena, cadena);
-void cargarEntero(int* numero, cadena);
+void cargarEntero(int*);
 
 //3
 //4
 
 
 int main() {
-	Libro* biblioteca = NULL;
+	Libro* biblioteca = malloc(sizeof(Libro));
 	int longitud = 0;
     int opcion;
     
@@ -84,10 +94,7 @@ int main() {
 
 	} while (opcion != OPCION_SALIR);  // 
 
-    if(biblioteca != NULL)
-    {
-    	free(biblioteca);
-    }
+    liberarMemoria(&biblioteca, longitud);
 	return 0;
 }
 
@@ -119,6 +126,20 @@ void pausa()
   printf("Pulsa ENTER para continuar.\n");
   while(getchar()!='\n');
 }
+
+void liberarMemoria(Libro *biblioteca, int contador)
+{
+	if (biblioteca!=NULL)
+	{
+		for (int i = 0; i < contador; i++)
+		{
+			free(biblioteca[i].titulo);
+			free(biblioteca[i].autor.apellido);
+			free(biblioteca[i].autor.nombre);
+		}
+	}
+}
+
 
 //2
 void mostrarListaDeLibros(Libro libro[], int contador) {
@@ -158,35 +179,58 @@ bool existe(char* texto)
 //1
 void agregarNuevoLibro(Libro** biblioteca, int* contador)
 {
-	Libro nuevoLibro;
-
-	nuevoLibro.titulo = malloc(LIBRO_TITULO_LEN);
-	nuevoLibro.autor.nombre = malloc(AUTOR_NOMBRE_LEN);
-	nuevoLibro.autor.apellido = malloc(AUTOR_APELLIDO_LEN);
-	
-	cargarCadena(nuevoLibro.titulo, "Que libro queres agregar?:\n");
-	cargarEntero(&nuevoLibro.anioPublicacion, "En que anio salio?:\n");
-	cargarCadena(nuevoLibro.autor.nombre, "Nombre del autor?:\n");
-	cargarCadena(nuevoLibro.autor.apellido, "Apellido del autor?:\n");
-
-	// Reservar espacio para un nuevo libro
-	*biblioteca = realloc(*biblioteca, (*contador + 1) * sizeof(Libro));
-
-	// Guardar el nuevo libro en la biblioteca
-	(*biblioteca)[*contador] = nuevoLibro;
-
 	*contador = *contador + 1;
+	*biblioteca = realloc(biblioteca,sizeof(Libro)* (*contador));
+	
+	if (*biblioteca==NULL)
+	{
+		printf("ERROR");
+	}
+	else
+	{
+	Libro nuevoLibro;
+	inicializarLibro(&nuevoLibro);
+	
+	leerLibro(&nuevoLibro);
+	*biblioteca[*contador] = nuevoLibro;
+	}
 }
 
-void cargarCadena(cadena aLeer, cadena mensaje) {
-    printf("%s ", mensaje);
-    gets(aLeer);
+void inicializarLibro(Libro* inicializar)
+{
+	inicializar = (Libro*) malloc(sizeof(Libro));
+	inicializar->anioPublicacion = 0;
+	strcpy( inicializar->autor.nombre,     NOMBRE_POR_DEFECTO);
+	strcpy( inicializar->autor.apellido,   APELLIDO_POR_DEFECTO);
+	strcpy( inicializar->titulo,           TITULO_POR_DEFECTO);
 }
 
-void cargarEntero(int* numero, cadena mensaje) {
-	printf("%s", mensaje);
-	fflush(stdin);
-	scanf("%d", numero);
+
+void leerLibro(Libro *cuaderno)
+{
+	printf("Que libro desea leer?: %s", cuaderno->titulo);
+	leerCadena(cuaderno->titulo,LIBRO_TITULO_LEN);
+	
+	printf("En que anio salio?:");
+	leerEntero(&cuaderno->anioPublicacion);
+	
+	printf("Apellido?: %s", cuaderno->autor.nombre);
+	leerCadena(cuaderno->autor.nombre,AUTOR_NOMBRE_LEN);
+
+	
+	printf("Nombre?: %s", cuaderno->autor.apellido);
+	leerCadena(cuaderno->autor.apellido,AUTOR_APELLIDO_LEN);
+}
+
+void leerCadena(char* texto, int longitud){
+	texto = malloc(sizeof(char)*longitud);
+	char* nuevo = malloc(sizeof(char)*longitud);
+	gets(nuevo);
+	strcpy(texto,nuevo);
+}
+
+void leerEntero(int* numero) {
+	scanf(" %d", numero);
 }
 
 

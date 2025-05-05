@@ -5,58 +5,29 @@
 #include<stdlib.h>
 #include<stdbool.h>
 
-
-typedef char* cadena [50];
+void limpiarBuffer();
 
 //0-0-0-0-0-0-0-0-0 SEPARADOR 0-0-0-0-0-0-0-0-0-0-0
 //LEER
 
-
-//INT
-//Mensaje+INT
-int LeerEntero(char*);
-//*INT+Mensaje
-void LeerEnteroVoid(int*,char*);
-
-//FLOAT
-//Mensaje+FLOAT
-float LeerFloat(char*);
-//*FLOAT+Mensaje
-void LeerFloatVoid(float*,char*);
-
-//CHAR
-//Mensaje+CHAR
-char LeerCaracter(char*);
-void LeerCaracterVoid(char*,char*);
-
+int LeerEntero();
+float LeerFloat();
+char LeerCaracter();
 
 //0-0-0-0-0-0-0-0-0 SEPARADOR 0-0-0-0-0-0-0-0-0-0-0
 //LEER ENTRE...
 
 
 //min + MAX + mensaje
-int LeerEnteroEntre(int,int,char*);
+int LeerEnteroEntre(int,int);
 //min + MAX + mensaje
-float LeerFloatEntre(float,float,char*);
-
-
-//0-0-0-0-0-0-0-0-0 SEPARADOR 0-0-0-0-0-0-0-0-0-0-0
-//MAYOR A...
-
-
-//Mayor a... + Mensaje
-int LeerEnteroMayorA(int,char*);
-int LeerFloatMayorA(float,char*);
+float LeerFloatEntre(float,float);
 
 //0-0-0-0-0-0-0-0-0 SEPARADOR 0-0-0-0-0-0-0-0-0-0-0
 //CONFIRMAR
 
-// [S/N]
-int confirmaUsuario(char*);
 // a=a
 int esLetra(char);
-// meter vector y posicion
-int esPalabra(char[], int);
 // num
 int esPrimo(int);
 // chars
@@ -80,47 +51,25 @@ void cambiarPosicionDeCaracteres(char*, char*);
 //VECTORES
 
 // vector
-void inicializarVectorDeEnteros(int[],int);
+void inicializarVectorDeEnteros(int*,int);
 //mensaje + vec + long
-void leerVectorDeEnteros(char*,int[],int);
+void leerVectorDeEnteros(char*,int*,int);
 //mensaje + vec + long
-void leerVectorDeFloats(char*,float[],int);
+void leerVectorDeFloats(char*,float*,int);
 //mensaje + vec + long
-void leerVectorDeCaracteres(char*,char[],int);
-
-//0-0-0-0-0-0-0-0-0 SEPARADOR 0-0-0-0-0-0-0-0-0-0-0
-//VECTORES ENTRE
-
-// min + maxmensaje + vec + long
-void leerVectorDeEnterosEntre(int,int,char*, int[], int);
-// min + maxmensaje + vec + long
-void leerVectorDeFloatsEntre(float valorMin, float valorMax, char* mensaje, float vec[], int cant);
-
-//0-0-0-0-0-0-0-0-0 SEPARADOR 0-0-0-0-0-0-0-0-0-0-0
-//MOSTRAR VECTOR
-// vec+long
-void mostrarVectorDeEnteros(int vec[], int cant);
-// vec+long
-void mostrarVectorDeFloats(float vec[], int cant);
-// vec+long
-void mostrarVectorDeCaracteres(char vec[], int cant);
+void leerVectorDeCaracteres(char*,char*,int);
 
 //0-0-0-0-0-0-0-0-0 SEPARADOR 0-0-0-0-0-0-0-0-0-0-0
 //ORDENAR VECTOR ASC Y DESC
 
 //vec + long
-void ordenarVectorDeEnterosAscendente(int vec[], int cant);
-//vec + long
-void ordenarVectorDeEnterosDescendente(int vec[], int cant);
-
+void ordenarVectorDeEnterosAscendente(int*, int);
 
 //0-0-0-0-0-0-0-0-0 SEPARADOR 0-0-0-0-0-0-0-0-0-0-0
 //CONTADORVECTORES
 
 // vec + long
-int contadorDePalabras(char vec[], int cant);
-// vec + long
-int contadorDeLetras(char vec[], int cant);
+int contadorDeLetras(char*, int);
 
 
 //0-0-0-0-0-0-0-0-0 SEPARADOR 0-0-0-0-0-0-0-0-0-0-0
@@ -128,22 +77,6 @@ int contadorDeLetras(char vec[], int cant);
 
 // puts Mensaje + char*
 void leerCadena(char*, char*);
-// puts Mensaje + char*
-void leerCadenaEntre(int, int, char*, char*);
-
-//0-0-0-0-0-0-0-0-0 SEPARADOR 0-0-0-0-0-0-0-0-0-0-0
-//MATRICES
-
-//mensaje, cant filas y columnas y la matriz
-void leerMatrizDeEnteros(char* mensaje, int f, int c, int mat[f][c]);
-//mensaje, cant filas y columnas y la matriz
-void leerMatrizDeFloats(char* mensaje, int f, int c, float mat[f][c]);
-// Muestra en forma de matriz INT con formato [f][c]
-void mostrarMatrizDeEnteros(int f, int c, int mat[f][c]);
-// Muestra en forma de matriz FLOAT con formato [f][c]
-void mostrarMatrizDeFloats(int f, int c, float mat[f][c]);
 
 
-
-#include"utils.c"
 #endif//UTILS_H_INCLUDED

@@ -1,29 +1,29 @@
 /*
   Materia : Estructura y base de datos
-  Autor   : Alberto Martín Capurro
+  Autor   : Alberto Martï¿½n Capurro
   Fecha   : 24 - 04 - 2025
 
-  Gestión de Biblioteca
-  Descripción:
+  Gestiï¿½n de Biblioteca
+  Descripciï¿½n:
   * Crea una estructura llamada Autor con los campos nombre y apellido
     (cadenas de caracteres).
 
-  * Crea una estructura llamada Libro con los campos título
+  * Crea una estructura llamada Libro con los campos tï¿½tulo
     (cadena de caracteres), anioPublicacion (entero) y un campo autor
     de tipo Autor.
 
-  * Escribe un programa que implemente un menú CRUD (Crear, Leer, Actualizar, Eliminar)
+  * Escribe un programa que implemente un menï¿½ CRUD (Crear, Leer, Actualizar, Eliminar)
     para gestionar una lista de libros.
-    Utiliza memoria dinámica para almacenar la lista de libros.
+    Utiliza memoria dinï¿½mica para almacenar la lista de libros.
 
-  * Desarrollar un menú interactivo el menú debe permitir:
+  * Desarrollar un menï¿½ interactivo el menï¿½ debe permitir:
     * Agregar un nuevo libro.
     * Mostrar la lista de libros.
-    * Modificar la información de un libro existente. (si no me tendrá que
+    * Modificar la informaciï¿½n de un libro existente. (si no me tendrï¿½ que
       avisar que no existe).
     * Eliminar un libro de la lista.
 
-  * No olvides liberar la memoria dinámica al finalizar el programa.
+  * No olvides liberar la memoria dinï¿½mica al finalizar el programa.
 */
 
 #include <stdio.h>
@@ -49,14 +49,14 @@ typedef struct st_autor
 {
   char  nombre   [AUTOR_NOMBRE_LEN];
   char  apellido [AUTOR_APELLIDO_LEN];
-} t_autor;
+} Autor;
 
 typedef struct st_libro
 {
   char      titulo   [LIBRO_TITULO_LEN];
-  int       anio_publicacion;
-  t_autor   autor;
-} t_libro;
+  int       anioPublicacion;
+  Autor   autor;
+} Libro;
 
 void pausa()
 {
@@ -75,14 +75,14 @@ enum {OPCION_SALIR,
 #define OPCION_MAX      4
 
 
-void crear_libro      (t_libro **libro_ref);
-void cargar_libro     (t_libro  *libro_ref);
-void leer_cadena      (char *buffer, int buffer_len);
+void crearLibro      (Libro **libroRef);
+void cargarLibro     (Libro  *libroRef);
+void leerCadena      (char *buffer, int bufferLen);
 
-void libro_agregar    (t_libro **libro_lista, int *len);
-void libros_mostrar   (t_libro  *libro_lista, int *len);
-void libro_modificar  (t_libro  *libro_lista, int *len);
-void libro_eliminar   (t_libro **libro_lista, int *len);
+void libroAgregar    (Libro **libroLista, int *len);
+void librosMostrar   (Libro  *libroLista, int *len);
+void libroModificar  (Libro  *libroLista, int *len);
+void libroEliminar   (Libro **libroLista, int *len);
 
 
 int menu(void)
@@ -108,24 +108,24 @@ int menu(void)
   return opcion;
 }
 
-void crear_libro(t_libro **libro_ref)
+void crearLibro(Libro **libroRef)
 {
-  //t_libro *libro_ptr = (t_libro*) malloc(sizeof(t_libro));
-  *libro_ref = (t_libro*) malloc(sizeof(t_libro));
-  //(*libro_ref)->anio_publicacion = rand()%(0+25+1)+2000;
-  (*libro_ref)->anio_publicacion =        ANIO_POR_DEFECTO;
-  strcpy( (*libro_ref)->autor.nombre,     NOMBRE_POR_DEFECTO);
-  strcpy( (*libro_ref)->autor.apellido,   APELLIDO_POR_DEFECTO);
-  strcpy( (*libro_ref)->titulo,           TITULO_POR_DEFECTO);
-  cargar_libro(*libro_ref);
+  //t_libro *libroPtr = (t_libro*) malloc(sizeof(t_libro));
+  *libroRef = (Libro*) malloc(sizeof(Libro));
+  //(*libroRef)->anioPublicacion = rand()%(0+25+1)+2000;
+  (*libroRef)->anioPublicacion =        ANIO_POR_DEFECTO;
+  strcpy( (*libroRef)->autor.nombre,     NOMBRE_POR_DEFECTO);
+  strcpy( (*libroRef)->autor.apellido,   APELLIDO_POR_DEFECTO);
+  strcpy( (*libroRef)->titulo,           TITULO_POR_DEFECTO);
+  cargarLibro(*libroRef);
 }
 
-//leer_cadena(libro_ref->autor.nombre, AUTOR_NOMBRE_LEN);
-void leer_cadena(char *buffer, int buffer_len)
+//leer_cadena(libroRef->autor.nombre, AUTOR_NOMBRE_LEN);
+void leerCadena(char *buffer, int bufferLen)
 {
   char c;
   int  char_count = 0;
-  while( (c = getchar())!= '\n' && char_count < buffer_len - 1)
+  while( (c = getchar())!= '\n' && char_count < bufferLen - 1)
   {
     buffer[char_count++] = c;
   }
@@ -134,20 +134,20 @@ void leer_cadena(char *buffer, int buffer_len)
     while(getchar()!='\n'){};
 }
 
-void cargar_libro(t_libro *libro_ref)
+void cargarLibro(Libro *libroRef)
 {
   char titulo[LIBRO_TITULO_LEN] = "";
   do
   {
-    printf("Ingresar nuevo titulo libro: %s\n", libro_ref->titulo);
-    leer_cadena(titulo, LIBRO_TITULO_LEN);
+    printf("Ingresar nuevo titulo libro: %s\n", libroRef->titulo);
+    leerCadena(titulo, LIBRO_TITULO_LEN);
   }
   while( !strcmp(titulo, "") );
 
   int anio = ANIO_POR_DEFECTO;
   do
   {
-    printf("Ingresar anio de libro: %d\n", libro_ref->anio_publicacion);
+    printf("Ingresar anio de libro: %d\n", libroRef->anioPublicacion);
     scanf(" %d", &anio);
     while(getchar()!='\n');
     if(ANIO_MINIMO > anio || ANIO_MAXIMO < anio)
@@ -160,56 +160,56 @@ void cargar_libro(t_libro *libro_ref)
   char autor_nombre[AUTOR_NOMBRE_LEN] = "";
   do
   {
-    printf("Ingresar nombre autor: %s\n", libro_ref->autor.nombre);
-    leer_cadena(autor_nombre, AUTOR_NOMBRE_LEN);
+    printf("Ingresar nombre autor: %s\n", libroRef->autor.nombre);
+    leerCadena(autor_nombre, AUTOR_NOMBRE_LEN);
   }
   while( !strcmp(autor_nombre, "") );
 
   char autor_apellido[AUTOR_APELLIDO_LEN] = "";
   do
   {
-    printf("Ingresar apellido autor: %s\n", libro_ref->autor.apellido);
-    leer_cadena(autor_apellido, AUTOR_APELLIDO_LEN);
+    printf("Ingresar apellido autor: %s\n", libroRef->autor.apellido);
+    leerCadena(autor_apellido, AUTOR_APELLIDO_LEN);
   }
   while( !strcmp(autor_apellido, "") );
 
-  libro_ref->anio_publicacion = anio;
-  strcpy(libro_ref->titulo         , titulo);
-  strcpy(libro_ref->autor.nombre   , autor_nombre);
-  strcpy(libro_ref->autor.apellido , autor_apellido);
+  libroRef->anioPublicacion = anio;
+  strcpy(libroRef->titulo         , titulo);
+  strcpy(libroRef->autor.nombre   , autor_nombre);
+  strcpy(libroRef->autor.apellido , autor_apellido);
 
 }
 
-void libro_agregar(t_libro **libro_lista, int *len)
+void libroAgregar(Libro **libroLista, int *len)
 {
   printf("\nAGREGA\n");
   //printf(" len %d\n", *len);
   //construir libro
-  //t_libro *libro_ptr = (t_libro*) malloc(sizeof(t_libro));
-  //libro_ptr->anio_publicacion = rand()%(0+25+1)+2000;
-  //strcpy( libro_ptr->autor.nombre,    "nombre");
-  //strcpy( libro_ptr->autor.apellido,  "apellido");
-  //strcpy( libro_ptr->titulo,          "el titulo");
+  //t_libro *libroPtr = (t_libro*) malloc(sizeof(t_libro));
+  //libroPtr->anioPublicacion = rand()%(0+25+1)+2000;
+  //strcpy( libroPtr->autor.nombre,    "nombre");
+  //strcpy( libroPtr->autor.apellido,  "apellido");
+  //strcpy( libroPtr->titulo,          "el titulo");
 
-  t_libro *libro_ptr = NULL;
+  Libro *libroPtr = NULL;
 
-  crear_libro(&libro_ptr);
+  crearLibro(&libroPtr);
 
-  t_libro *libro_temp = realloc( *libro_lista, sizeof(t_libro) * (*len + 1));
-  if(libro_temp == NULL)
+  Libro *libroTemp = realloc( *libroLista, sizeof(Libro) * (*len + 1));
+  if(libroTemp == NULL)
   {
     printf("Error de asignacion de memoria\n");
     exit(-2);
   }
-  *libro_lista = libro_temp;
+  *libroLista = libroTemp;
 
-  (*libro_lista)[*len] = *libro_ptr;
+  (*libroLista)[*len] = *libroPtr;
 
-  free(libro_ptr);
+  free(libroPtr);
   (*len)++;
 }
 
-void libros_mostrar (t_libro *libro_lista, int *len)
+void librosMostrar (Libro *libroLista, int *len)
 {
   printf("MUESTRA\n");
 
@@ -224,17 +224,17 @@ void libros_mostrar (t_libro *libro_lista, int *len)
     {
       printf("[%3d]-[%-20s]-[%5d]-[%-25s]-[%-25s]\n",
              i+1,
-             libro_lista[i].titulo,
-             libro_lista[i].anio_publicacion,
-             libro_lista[i].autor.nombre,
-             libro_lista[i].autor.apellido);
+             libroLista[i].titulo,
+             libroLista[i].anioPublicacion,
+             libroLista[i].autor.nombre,
+             libroLista[i].autor.apellido);
     }
     printf("\n");
   }
   pausa();
 }
 
-void libro_modificar(t_libro *libro_lista, int *len)
+void libroModificar(Libro *libroLista, int *len)
 {
   printf("MODIFICA\n");
   if( *len > 0 )
@@ -257,15 +257,15 @@ void libro_modificar(t_libro *libro_lista, int *len)
     char titulo[LIBRO_TITULO_LEN] = "";
     do
     {
-      printf("Ingresar nuevo titulo libro: %s\n", libro_lista[indice].titulo);
-      leer_cadena(titulo, LIBRO_TITULO_LEN);
+      printf("Ingresar nuevo titulo libro: %s\n", libroLista[indice].titulo);
+      leerCadena(titulo, LIBRO_TITULO_LEN);
     }
     while( !strcmp(titulo, "") );
 
     int anio = ANIO_POR_DEFECTO;
     do
     {
-      printf("Ingresar anio de libro: %d\n", libro_lista[indice].anio_publicacion);
+      printf("Ingresar anio de libro: %d\n", libroLista[indice].anioPublicacion);
       scanf(" %d", &anio);
       while(getchar()!='\n');
       if(ANIO_MINIMO > anio || ANIO_MAXIMO < anio)
@@ -278,25 +278,25 @@ void libro_modificar(t_libro *libro_lista, int *len)
     char autor_nombre[AUTOR_NOMBRE_LEN] = "";
     do
     {
-      printf("Ingresar nombre autor: %s\n", libro_lista[indice].autor.nombre);
-      leer_cadena(autor_nombre, AUTOR_NOMBRE_LEN);
+      printf("Ingresar nombre autor: %s\n", libroLista[indice].autor.nombre);
+      leerCadena(autor_nombre, AUTOR_NOMBRE_LEN);
     }
     while( !strcmp(autor_nombre, "") );
 
     char autor_apellido[AUTOR_APELLIDO_LEN] = "";
     do
     {
-      printf("Ingresar apellido autor: %s\n", libro_lista[indice].autor.apellido);
-      leer_cadena(autor_apellido, AUTOR_APELLIDO_LEN);
+      printf("Ingresar apellido autor: %s\n", libroLista[indice].autor.apellido);
+      leerCadena(autor_apellido, AUTOR_APELLIDO_LEN);
     }
     while( !strcmp(autor_apellido, "") );
 
     if( (*len) > 0 && (*len) > indice)
     {
-      libro_lista[indice].anio_publicacion      = anio;
-      strcpy(libro_lista[indice].titulo         , titulo);
-      strcpy(libro_lista[indice].autor.nombre   , autor_nombre);
-      strcpy(libro_lista[indice].autor.apellido , autor_apellido);
+      libroLista[indice].anioPublicacion      = anio;
+      strcpy(libroLista[indice].titulo         , titulo);
+      strcpy(libroLista[indice].autor.nombre   , autor_nombre);
+      strcpy(libroLista[indice].autor.apellido , autor_apellido);
     }
   }
   else
@@ -305,7 +305,7 @@ void libro_modificar(t_libro *libro_lista, int *len)
   }
 }
 
-void libro_eliminar (t_libro **libro_lista, int *len)
+void libroEliminar (Libro **libroLista, int *len)
 {
   if (*len > 0)
   {
@@ -331,18 +331,18 @@ void libro_eliminar (t_libro **libro_lista, int *len)
       printf("ELIMINA\n");
       for(int i = indice; i < (*len - 1); i++)
       {
-        (*libro_lista)[i] = (*libro_lista)[i+1];
+        (*libroLista)[i] = (*libroLista)[i+1];
       }
 
-      t_libro *libro_temp = realloc( *libro_lista, sizeof(t_libro) * (*len - 1));
-      if(libro_temp == NULL)
+      Libro *libroTemp = realloc( *libroLista, sizeof(Libro) * (*len - 1));
+      if(libroTemp == NULL)
       {
         printf("Error de asignacion de memoria\n");
         exit(-1);
       }
-      *libro_lista = libro_temp;
+      *libroLista = libroTemp;
 
-      //*libro_lista = realloc( *libro_lista, sizeof(t_libro) * (*len - 1));
+      //*libroLista = realloc( *libroLista, sizeof(t_libro) * (*len - 1));
       (*len)--;
       //printf("len     %d\n", *len);
       //printf("indice  %d\n", indice);
@@ -358,8 +358,8 @@ void libro_eliminar (t_libro **libro_lista, int *len)
 
 int main()
 {
-  t_libro *libro_lista  = NULL;
-  int     libro_len     = 0;
+  Libro *libroLista  = NULL;
+  int     libroLen     = 0;
 
   int opcion = -1;
   do
@@ -369,7 +369,7 @@ int main()
 
     // * Agregar un nuevo libro.
     // * Mostrar la lista de libros.
-    // * Modificar la información de un libro existente. (si no me tendrá que
+    // * Modificar la informaciï¿½n de un libro existente. (si no me tendrï¿½ que
     //   avisar que no existe).
     // * Eliminar un libro de la lista.
 
@@ -378,17 +378,17 @@ int main()
       case OPCION_SALIR:
         break;
       case OPCION_ADD_LIBRO:
-        libro_agregar(&libro_lista, &libro_len);
-        break;
+          libroAgregar(&libroLista, &libroLen);
+          break;
       case OPCION_MOSTRAR_LIBROS:
-        libros_mostrar(libro_lista, &libro_len);
-        break;
+          librosMostrar(libroLista, &libroLen);
+          break;
       case OPCION_ACTUALIZAR_LIBRO:
-        libro_modificar(libro_lista, &libro_len);
-        break;
+          libroModificar(libroLista, &libroLen);
+          break;
       case OPCION_BORRAR_LIBRO:
-        libro_eliminar(&libro_lista, &libro_len);
-        break;
+          libroEliminar(&libroLista, &libroLen);
+          break;
       default:
         printf("NO DEBERIAS ESTAR AQUI");
     }
@@ -396,9 +396,9 @@ int main()
   }
   while(opcion != OPCION_SALIR);
 
-  if(libro_lista != NULL)
+  if(libroLista != NULL)
   {
-    free(libro_lista);
+    free(libroLista);
   }
 
   return 0;

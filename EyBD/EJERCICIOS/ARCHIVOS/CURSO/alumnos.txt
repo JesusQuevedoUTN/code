@@ -1,0 +1,6 @@
+Jesus,Quevedo,Informatica,7
+Matias,Rivero,Oculista,6
+Fernando,Fercho,Profesor,4
+Juan,Cruz,Nada,1
+Adriana,Chacon,Ama de Casa,10
+Milagros,Quevedo,Psicologia,5

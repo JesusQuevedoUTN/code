@@ -1,0 +1,3 @@
+Fernando,Fercho,Profesor,4
+Juan,Cruz,Nada,1
+Milagros,Quevedo,Psicologia,5

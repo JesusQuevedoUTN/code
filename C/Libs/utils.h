@@ -4,8 +4,18 @@
 #include<string.h>
 #include<stdlib.h>
 #include<stdbool.h>
+#include<math.h>
+#include<ctype.h>
 
+
+//UTILS
 void limpiarBuffer();
+void utf8();
+
+//0-0-0-0-0-0-0-0-0 SEPARADOR 0-0-0-0-0-0-0-0-0-0-0
+//FILE
+void inicializarArchivo(FILE**, char*);
+
 
 //0-0-0-0-0-0-0-0-0 SEPARADOR 0-0-0-0-0-0-0-0-0-0-0
 //LEER
@@ -73,10 +83,9 @@ int contadorDeLetras(char*, int);
 
 
 //0-0-0-0-0-0-0-0-0 SEPARADOR 0-0-0-0-0-0-0-0-0-0-0
-//char*S
+//*S
+int baseADecimal(char* numero, int base);
 
-// puts Mensaje + char*
-void leerCadena(char*, char*);
-
+void nada();
 
 #endif//UTILS_H_INCLUDED

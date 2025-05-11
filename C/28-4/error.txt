@@ -1,5 +1,0 @@
-int error(char *x)
-{
-    fprintf(stderr, "No se pudo abrir el archivo %s", x);
-    return (1);
-}

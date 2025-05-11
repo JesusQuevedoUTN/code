@@ -1,4 +1,8 @@
+#ifndef UTILS_H_INCLUDED
+#define UTILS_H_INCLUDED
+
 #include<stdio.h> //stdio.h significa standar input-output. Header(caneceras)
+/*
 #include<string.h>
 #include<stdlib.h>
 #include<stdbool.h>
@@ -11,13 +15,14 @@ void limpiarBuffer() {
     int c;
     while ((c = getchar()) != '\n' && c!= EOF);
 }
-
 void utf8()
 {
     #ifdef _WIN32
       system("chcp 65001 < nul");
     #endif
 }
+
+
 //FILE
 void inicializarArchivo(FILE* (*archivo), char* nombreArchivo)
 {
@@ -31,6 +36,7 @@ void inicializarArchivo(FILE* (*archivo), char* nombreArchivo)
         }
     }
 }
+
 
 //ENTERO
 int LeerEntero(){
@@ -171,8 +177,10 @@ int baseADecimal(char* numero, int base)
 }
 
 
-
 void nada()
 {
-
+    
 }
+
+
+#endif//UTILS_H_INCLUDED

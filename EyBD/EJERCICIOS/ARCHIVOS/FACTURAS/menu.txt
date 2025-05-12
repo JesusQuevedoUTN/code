@@ -1,0 +1,72 @@
+int main()
+{
+    /*
+
+    archivoClientes = fopen(nombreArchivo, "rb+");
+    if (archivoClientes == NULL)
+    {
+        archivoClientes = fopen(nombreArchivo, "wb+");
+        if (archivoClientes == NULL)
+        {
+            printf("\nNo se pudo crear el archivo %s.\n", nombreArchivo);
+            return 1;
+        }
+        printf("\nEl archivo %s ha sido creado.", nombreArchivo);
+    }
+    else
+    {
+        printf("\nEl archivo %s ha sido abierto para lectura y escritura.", nombreArchivo);
+    }
+    tecla();
+    */
+    utf8();
+    menu();
+    return 0;
+}
+
+void menu()
+{
+    int opcion;
+    do
+    {
+        system("cls");
+        printf("\n=== MENU PRINCIPAL ===\n");
+        printf("1. Mostrar clientes\n");
+        printf("2. Mostrar artículos\n");
+        printf("3. Agregar cliente\n");
+        printf("4. Agregar artículo\n");
+        printf("5. Facturar\n");
+        printf("6. Estadística de ventas\n");
+        printf("7. Listado ordenado de clientes\n");
+        printf("0. Salir\n");
+        printf("Ingrese opción: ");
+        scanf("%d", &opcion);
+
+        switch (opcion)
+        {
+        case 1:
+            mostrarClientes();
+            break;
+        case 2:
+            mostrarArticulos();
+            break;
+        case 3:
+            agregarCliente();
+            break;
+        case 4:
+            agregarArticulo();
+            break;
+        case 5:
+            facturar();
+            break;
+        case 6:
+            estadisticaVentas();
+            break;
+        case 7:
+            listarClientesOrdenados();
+            break;
+        }
+        if (opcion != 0)
+            pausa();
+    } while (opcion != 0);
+}

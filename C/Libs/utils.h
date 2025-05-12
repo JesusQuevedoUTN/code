@@ -1,91 +1,209 @@
 #ifndef UTILS_H_INCLUDED
-#define UTILS_H_INCLUDED
-#include<stdio.h> //stdio.h significa standar input-output. Header(caneceras)
-#include<string.h>
-#include<stdlib.h>
-#include<stdbool.h>
-#include<math.h>
-#include<ctype.h>
+    #define UTILS_H_INCLUDED
+
+    #include<stdio.h> //stdio.h significa standar input-output. Header(caneceras)
+
+    #include<string.h>
+    #include<stdlib.h>
+    #include<stdbool.h>
+    #include<math.h>
+    #include<ctype.h>
+
+    //UTILS
+    void tecla()
+    {
+        system("pause");
+    }
+
+    void limpiarBuffer() {
+        int c;
+        while ((c = getchar()) != '\n' && c!= EOF);
+    }
+    void utf8()
+    {
+        #ifdef _WIN32
+        system("chcp 65001 < nul");
+        #endif
+    }
+    
+    //MIOS
+    void iniciar()
+    {
+        utf8();
+        system("cls");
+    }
+    void pausa()
+    {
+        system("pause");
+        system("cls");
+    }
+    void clean(){
+        system("cls;");
+    }
+
+    //FILE
+void iniciarBinario(FILE* (*archivo), char* nombreArchivo)
+{
+    if ( (*archivo) == NULL)
+    {
+        (*archivo) = fopen(nombreArchivo, "wb+");
+        if ( (*archivo) == NULL)
+        {
+            printf("No se pudo crear el archivo %s.\n", nombreArchivo);
+            return 1;
+        }
+        printf("El archivo %s ha sido creado.\n", nombreArchivo);
+    }
+    else
+    {
+        printf("El archivo %s ha sido abierto para lectura y escritura.\n", nombreArchivo);
+    }
+}
 
 
-//UTILS
-void limpiarBuffer();
-void utf8();
+    //ENTERO
+    int LeerEntero(){
+        int numero;
+        limpiarBuffer();
+        scanf("%d", &numero);
+        return numero;
+    }
 
-//0-0-0-0-0-0-0-0-0 SEPARADOR 0-0-0-0-0-0-0-0-0-0-0
-//FILE
-void inicializarArchivo(FILE**, char*);
+    //FLOAT
+    float LeerFloat(){
+        float numero;
+        limpiarBuffer();
+        scanf(" %f", &numero);
+        return numero;
+    }
+
+    //CHAR
+    char LeerCaracter(){
+        char caracter;
+        limpiarBuffer();
+        scanf("%c", &caracter);
+        return caracter;
+    }
+
+    //LEER ENTRE...
+    int LeerEnteroEntre(int valorMin,int valorMax) {
+        int valor = LeerEntero();
+        while(valor<valorMin || valor>valorMax)
+        {
+            printf("ERROR. Fuera de rango [%d - %d].\n", valorMin, valorMax);
+            valor = LeerEntero();
+        }
+        return valor;
+    }
+
+    float LeerFloatEntre(float valorMin,float valorMax) {
+        float valor = LeerFloat();
+        while (valor<valorMin || valor>valorMax)
+        {
+            printf("ERROR. El valor debe estar entre %.2f y %.f.\nVuelva a intentarlo\n\n", valorMin, valorMax);
+            limpiarBuffer();
+            valor = LeerFloat();
+        }
+        return valor;
+    }
+
+    int esLetra(char letra)
+    {
+        return (letra >= 'a' && letra <='z') || (letra >= 'A' && letra <= 'Z');
+    }
+
+    int esPrimo(int primo)
+    {
+        int i = 2;
+        while (primo%i!=0 && i<primo)
+        {
+            i++;
+        }
+        return i == primo;
+    }
+    int sonIgualesCaracteres(char x, char y)
+    {
+        return x==y;
+    }
+
+    //PROMEDIO
+    float promedio(int total, int parcial) {
+        return (float)total/parcial;
+    }
+
+    //CAMBIAR POSICION
+    void cambiarPosicionDeEnteros(int *x, int *y)
+    {
+        int aux = *x;
+        *x=*y;
+        *y=aux;
+    }
+
+    void cambiarPosicionDeCaracteres(char *x, char *y)
+    {
+        char aux = *x;
+        *x=*y;
+        *y=aux;
+    }
+
+    //ORDENAR VECTOR ASC Y DESC
+    void ordenarVectorDeEnterosAscendente(int* vec, int cant) {
+        for (int i = 0; i < cant; i++)
+        {
+            for (int j = 0; j<cant-1; j++)
+            {
+                if(vec[j]>vec[j+1])
+                {
+                    cambiarPosicionDeEnteros(&vec[j], &vec[j+1]);
+                }
+            }
+        }
+    }
+
+    int contadorDeLetras(char* vec, int cant)
+    {
+        int contador=0;
+        for (int i = cant ; i > 0; i--)
+            {
+                if (vec[i-1] != ' ')
+                {
+                    contador++;
+                }
+            }
+        return contador;
+    }
+
+    int baseADecimal(char* numero, int base)
+    {
+        int sumatoria =     0;
+        int digito;
+        char c;
+        int len = strlen(numero);
+
+        for (int i = 0; i < len ; i++)
+        {
+            c = toupper(numero[(len-1)-i]);
+            
+            if (isdigit(c))
+            {
+                digito = c -'0';
+            }
+            else
+            {
+                digito = c - 'A' + 10;
+            }
+            
+            sumatoria = sumatoria + digito * pow(base,i);
+        }
+
+        return sumatoria;
+    }
 
 
-//0-0-0-0-0-0-0-0-0 SEPARADOR 0-0-0-0-0-0-0-0-0-0-0
-//LEER
+    void nada()
+    {
+        
+    }
 
-int LeerEntero();
-float LeerFloat();
-char LeerCaracter();
-
-//0-0-0-0-0-0-0-0-0 SEPARADOR 0-0-0-0-0-0-0-0-0-0-0
-//LEER ENTRE...
-
-
-//min + MAX + mensaje
-int LeerEnteroEntre(int,int);
-//min + MAX + mensaje
-float LeerFloatEntre(float,float);
-
-//0-0-0-0-0-0-0-0-0 SEPARADOR 0-0-0-0-0-0-0-0-0-0-0
-//CONFIRMAR
-
-// a=a
-int esLetra(char);
-// num
-int esPrimo(int);
-// chars
-int sonIgualesCaracteres(char, char);
-
-//0-0-0-0-0-0-0-0-0 SEPARADOR 0-0-0-0-0-0-0-0-0-0-0
-//PROMEDIO
-
-// a/b
-float promedio(int, int);
-
-//0-0-0-0-0-0-0-0-0 SEPARADOR 0-0-0-0-0-0-0-0-0-0-0
-//CAMBIAR POSICION
-
-// a<- aux ->b
-void cambiarPosicionDeEnteros(int*, int*);
-void cambiarPosicionDeCaracteres(char*, char*);
-
-
-//0-0-0-0-0-0-0-0-0 SEPARADOR 0-0-0-0-0-0-0-0-0-0-0
-//VECTORES
-
-// vector
-void inicializarVectorDeEnteros(int*,int);
-//mensaje + vec + long
-void leerVectorDeEnteros(char*,int*,int);
-//mensaje + vec + long
-void leerVectorDeFloats(char*,float*,int);
-//mensaje + vec + long
-void leerVectorDeCaracteres(char*,char*,int);
-
-//0-0-0-0-0-0-0-0-0 SEPARADOR 0-0-0-0-0-0-0-0-0-0-0
-//ORDENAR VECTOR ASC Y DESC
-
-//vec + long
-void ordenarVectorDeEnterosAscendente(int*, int);
-
-//0-0-0-0-0-0-0-0-0 SEPARADOR 0-0-0-0-0-0-0-0-0-0-0
-//CONTADORVECTORES
-
-// vec + long
-int contadorDeLetras(char*, int);
-
-
-//0-0-0-0-0-0-0-0-0 SEPARADOR 0-0-0-0-0-0-0-0-0-0-0
-//*S
-int baseADecimal(char* numero, int base);
-
-void nada();
 
 #endif//UTILS_H_INCLUDED

@@ -70,4 +70,9 @@
     {
         system("pause");
     }
+
+    void nada() 
+    {
+        printf("Hola desde utils.c\n");
+    }
 #endif /* UTILES_H_ */

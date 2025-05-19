@@ -35,10 +35,10 @@
     void pausa()
     {
         system("pause");
-        system("cls");
+        clean();
     }
     void clean(){
-        system("cls;");
+        system("cls");
     }
 
     //FILE

@@ -2,8 +2,8 @@ package ejercicio02;
 
 import java.util.List;
 
-
 public class Test {
+
     public static void main(String[] args) {
         Inmobiliaria inmobiliaria = new Inmobiliaria();
 
@@ -26,9 +26,9 @@ public class Test {
         inmobiliaria.agregarPropiedad(p6);
         inmobiliaria.agregarPropiedad(p7);
         inmobiliaria.agregarPropiedad(p8);
-        
+
         // Llamados de prueba
-        System.out.println( "Promedio de precios: " + inmobiliaria.promedioDePrecio() );
+        System.out.println("Promedio de precios: " + inmobiliaria.promedioDePrecio());
 
         System.out.println("\nPropiedades mas economicas:");
         List<Propiedad> economicas = inmobiliaria.propiedadesMasEconomicas();
@@ -36,6 +36,6 @@ public class Test {
             System.out.println(p);
         }
         System.out.println("- - - - - - -");
-        System.out.println("Cantidad de propiedades tipo "+ TipoDeInmoviliaria.DEPARTAMENTO + ": " + inmobiliaria.cantidadDePropiedadesSegunTipo(TipoDeInmoviliaria.DEPARTAMENTO));
+        System.out.println("Cantidad de propiedades tipo " + TipoDeInmoviliaria.DEPARTAMENTO + ": " + inmobiliaria.cantidadDePropiedadesSegunTipo(TipoDeInmoviliaria.DEPARTAMENTO));
     }
 }

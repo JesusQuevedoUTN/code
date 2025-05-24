@@ -14,19 +14,19 @@ public class Test {
         Droide arturitu = new Droide("R2D2");
         Droide citripio = new Droide("C3P0");
         Droide bibieit = new Droide("BB8");
-        
+
         cargarDroides(arturitu, citripio, bibieit);
         arturitu.registrarDroideRoto(citripio);
         arturitu.registrarDroideRoto(bibieit);
-        
+
         System.out.println("+ + + MISION 001 + + +");
         mostrarEstados(arturitu, citripio, bibieit);
-        
+
         //MOSTRAR ESTADO
         System.out.println("+ + + AUTOREPARACION DE " + arturitu.getNombre() + " EN PROCESO + + +");
         System.out.println("ESTADO: " + arturitu.autoRepararse());
         System.out.println("+ + + AUTOREPARACION FINALIZADA + + +");
-        
+
         System.out.println("");
         mostrarEstados(arturitu, citripio, bibieit);
     }
@@ -35,7 +35,7 @@ public class Test {
         //ARTUR Y CITRI SUFRIERON UN ACCIDENTE EN UNA MISIÓN, SE ROMPIERON, DE PASO
         //BIBIEIT SE ROMPIÓ UNA PIEZA QUE NECESITA Y CITRI LA OTRA PARA QUE
         //REQUIERA DE AMBOS
-        
+
         //LE AGREGAMOS PIEZAS A ARTUR, ES UN ROBOT MUY COMPLETO
         arturitu.agregarPiezaOperativa(TipoDePieza.SENSOR_DE_PROXIMIDAD, Estado.ROTO);
         arturitu.agregarPiezaOperativa(TipoDePieza.BATERIA_DE_LITIO, Estado.IRREPARABLE);
@@ -47,14 +47,12 @@ public class Test {
         citripio.agregarPiezaOperativa(TipoDePieza.BATERIA_DE_LITIO, Estado.SANO);
         citripio.agregarPiezaOperativa(TipoDePieza.DISCO_DE_ALMACENAMIENTO, Estado.SANO);
         citripio.agregarPiezaOperativa(TipoDePieza.MODULO_DE_IDIOMAS, Estado.ROTO);
-        citripio.agregarPiezaOperativa(TipoDePieza.SENSOR_DE_PROXIMIDAD,Estado.IRREPARABLE);
+        citripio.agregarPiezaOperativa(TipoDePieza.SENSOR_DE_PROXIMIDAD, Estado.IRREPARABLE);
         //BIBI ES UN ROBOT SIMPLE, APENAS SI TIENE PIEZAS
         bibieit.agregarPiezaOperativa(TipoDePieza.SENSOR_DE_PROXIMIDAD, Estado.SANO);
         bibieit.agregarPiezaOperativa(TipoDePieza.VISOR_NOCTURNO, Estado.SANO);
         bibieit.agregarPiezaOperativa(TipoDePieza.BATERIA_DE_LITIO, Estado.DANIADO);
     }
-    
-   
 
     static void mostrarEstados(Droide arturitu, Droide citripio, Droide bibieit) {
         arturitu.estado();
@@ -64,5 +62,5 @@ public class Test {
         bibieit.estado();
         System.out.println("");
     }
-    
+
 }

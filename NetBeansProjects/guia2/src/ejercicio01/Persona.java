@@ -34,9 +34,7 @@ public class Persona {
         this(DNI, nombre, apellido, domicilio);
         this.fechaDeNacimiento = fechaDeNacimiento;
     }
-    
 
-    
     // Métodos
     // Devolver el nombre completo de la persona.
     public String nombreCompleto() {
@@ -50,12 +48,11 @@ public class Persona {
     public String getDNI() {
         return DNI;
     }
-    
-    public String getBarrio(){
+
+    public String getBarrio() {
         return this.domicilio.getBarrio();
     }
-    
-    
+
     // Mostrar su estado en la consola.
     // Obtener su edad actual.
     public int edad() {

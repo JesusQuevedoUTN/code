@@ -22,7 +22,7 @@ public class Droide {
     //METODOS MAIN
     //1
     public void agregarPiezaOperativa(TipoDePieza tipoDePieza, Estado estado) {
-        Pieza pieza =  new Pieza(tipoDePieza, estado);
+        Pieza pieza = new Pieza(tipoDePieza, estado);
         if (estado != Estado.ROTO && estado != Estado.IRREPARABLE) {
             this.piezasSanas.add(pieza);
         } else {
@@ -60,7 +60,7 @@ public class Droide {
             }
             piezasInservibles.removeAll(reemplazar);
         }
-        
+
         //si acaba vacía esta lista, implica que se reparó, si no se reparó al 100, se busca que solo esté roto, pero no inservible
         if (!piezasInservibles.isEmpty()) {
             estado = TipoDeEstado.COMPLETAMENTE_OPERATIVO;
@@ -82,36 +82,34 @@ public class Droide {
     }
 
     //METODOS
-    
     private Droide buscarParteEnDroides(Pieza buscada) {
         Droide encontrado = null;
 //        Pieza mejorable = new Pieza(buscada.getNombre(), Estado.IRREPARABLE);
         Pieza encontrada = null;
-        
+
         for (Droide droide : chatarras) {
-              encontrada = buscarParteEnDroide(droide, buscada);
+            encontrada = buscarParteEnDroide(droide, buscada);
 //            encontrada = buscarPieza(buscada);
 //            if (encontrada != null && encontrada.getEstado().ordinal() < mejorable.getEstado().ordinal()) {
 //                encontrado ;
 //            }
         }
-        
+
         return encontrado;
     }
-    
-    private Pieza buscarParteEnDroide(Droide seleccionado, Pieza buscar){
+
+    private Pieza buscarParteEnDroide(Droide seleccionado, Pieza buscar) {
         Pieza encontrada = new Pieza(buscar.getNombre(), Estado.IRREPARABLE);
         ArrayList<Pieza> piezasDeLaChatarra = new ArrayList<Pieza>();
-        
-        
+
         for (Droide robot : chatarras) {
             piezasDeLaChatarra = robot.getPiezasSanas();
-            
+
         }
-        
+
         return encontrada;
     }
-    
+
 //    private void reemplazarPieza(Pieza aReemplazar) {
 //        Pieza mejorar = new Pieza(aReemplazar.getNombre(), Estado.IRREPARABLE);
 //        Pieza encontrada = null;
@@ -136,14 +134,12 @@ public class Droide {
 //        intercambiarPiezas(buscarPieza(encontrada),robot.buscarPieza(encontrada));
 //        intercambiarPiezas(auxiliar,buscarPieza(encontrada));
 //    }
-
     private void intercambiarPiezas(Pieza pie1, Pieza pie2) {
         Pieza aux = pie1;
         pie2 = pie1;
         pie1 = aux;
     }
 
-    
     private void mostrarPiezas() {
         if (!piezas.isEmpty()) {
             int i = 1;
@@ -158,9 +154,8 @@ public class Droide {
         int i = 0;
         while (i < piezasInservibles.size() && piezasInservibles.get(i).getEstado() != Estado.IRREPARABLE) {
             i++;
-        }            
+        }
         return i == piezasInservibles.size();
     }
-
 
 }

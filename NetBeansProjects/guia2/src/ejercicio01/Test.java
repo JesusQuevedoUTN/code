@@ -19,7 +19,7 @@ public class Test {
 
     public static void main(String[] args) {
         Agenda agenda = new Agenda();
-        
+
         System.out.println(agenda.cantPersonas()); // Deberían ser 0
 
         agenda.agregarPersona("123", "Juan", "Perez", new Domicilio("Callao", 352, "Balvanera"));
@@ -37,36 +37,33 @@ public class Test {
         agenda.agregarPersona("432", "Ana", "Benítez", new Domicilio("Bulnes", 1450, "Almagro"));
         agenda.agregarPersona("321", "Diego", "Ortiz", new Domicilio("José María Moreno", 120, "Parque Chacabuco"));
         // DNI REPETIDO, no debería agregarse:
-        agenda.agregarPersona("123", "Fake", "Fake", new Domicilio("José María Moreno", 120, "Parque Chacabuco")); 
-        
+        agenda.agregarPersona("123", "Fake", "Fake", new Domicilio("José María Moreno", 120, "Parque Chacabuco"));
+
         System.out.printf("Hay %d personas en la agenda\n", agenda.cantPersonas()); // Deberían ser 14
-        
-        System.out.println( agenda.buscarPersona("012") ); // Retorna a Florencia Medina
-        System.out.println( agenda.buscarPersona("999") ); // Retorna null
-        
+
+        System.out.println(agenda.buscarPersona("012")); // Retorna a Florencia Medina
+        System.out.println(agenda.buscarPersona("999")); // Retorna null
+
         System.out.println(agenda.devolverUltimo()); // Retorna a Diego Ortiz
-        
+
         System.out.println(agenda.modificarDomicilio("012", new Domicilio("Nueva calle", 987, "Almagro")));
-        
-        System.out.println( agenda.buscarPersona("012") ); // Retorna a Florencia Medina (con nuevo domicilio)
-        
+
+        System.out.println(agenda.buscarPersona("012")); // Retorna a Florencia Medina (con nuevo domicilio)
+
         mostrarLista(agenda.obtenerPorBarrio("Almagro"));
-        
+
         Persona borrada = agenda.removerPersona("890"); // Chau Valentina Moreno 
         System.out.printf("Se borró a %s", borrada.nombreCompleto());
-        
+
         //agenda.listarPersonas(); // Deberían ser 13
-        
         agenda.vaciar();
-        
+
         System.out.printf("Hay %d personas en la agenda", agenda.cantPersonas()); // Deberían ser 0
-        
+
         agenda.listarPersonas();
-        
-        
-        
+
     }
-    
+
     public static void mostrarLista(ArrayList<Persona> lista) {
         System.out.println("----------- Mostrando lista ----------");
         for (Persona p : lista) {

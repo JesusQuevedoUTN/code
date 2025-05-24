@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ejercicio04;
+
 /*
 4) Una conocida marca de automóviles posee una lista con todas las concesionarias en donde posee 
 vehículos a la venta. Cada concesionaria tiene su nombre y una lista con todos los vehículos a la 
@@ -20,8 +21,8 @@ y elimine el vehículo asociado a esa patente de la concesionaria donde se encue
 F) La implementación del método cambiarVehiculoDeConcesionaria de la clase Marca, que 
 reciba una patente y una concesionaria. Debe mover el vehículo asociado a esa patente a la
 concesionaria indicada.
-*/
+ */
 
 public class Test {
-    
+
 }

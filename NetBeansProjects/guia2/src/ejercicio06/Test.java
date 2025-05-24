@@ -12,5 +12,5 @@ import ejercicio02.*;
  * @author jesus
  */
 public class Test {
-    
+
 }

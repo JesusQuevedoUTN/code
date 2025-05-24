@@ -1,4 +1,5 @@
 package ejercicio02;
+
 import ejercicio01.*;
 
 public class Domicilio {
@@ -13,9 +14,8 @@ public class Domicilio {
         this.numero = numero;
         this.barrio = barrio;
     }
-    
-    
-    public String getBarrio(){
+
+    public String getBarrio() {
         return this.barrio;
     }
 
@@ -26,8 +26,6 @@ public class Domicilio {
     public int getNumero() {
         return numero;
     }
-    
-    
 
     @Override
     public String toString() {

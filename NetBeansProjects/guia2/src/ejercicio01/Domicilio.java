@@ -22,8 +22,8 @@ public class Domicilio {
         this.numero = numero;
         this.barrio = barrio;
     }
-    
-    public String getBarrio(){
+
+    public String getBarrio() {
         return this.barrio;
     }
 

@@ -50,7 +50,6 @@ void iniciarBinario(FILE* (*archivo), char* nombreArchivo)
         if ( (*archivo) == NULL)
         {
             printf("No se pudo crear el archivo %s.\n", nombreArchivo);
-            return 1;
         }
         printf("El archivo %s ha sido creado.\n", nombreArchivo);
     }

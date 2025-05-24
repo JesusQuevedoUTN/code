@@ -1,22 +1,38 @@
 package ejercicio03;
 
+import java.util.ArrayList;
 
-/*
-3) Una academia ofrece una serie de cursos de diversas disciplinas. De cada curso se sabe su código 
-alfanumérico que lo identifica unívocamente, su título, la cantidad de horas de duración y los 
-alumnos que posee inscriptos. De cada alumno se sabe su nombre y su DNI. Así mismo, cada alumno 
-posee una lista con las evaluaciones rendidas. De cada evaluación se sabe su tipo (Primer examen, 
-Segundo examen o Final) y la nota obtenida.
-Basado en el enunciado descripto, realizá:
-A) El diagrama de clases que lo modelice, con sus relaciones, atributos y métodos.
-B) La implementación del método calcularPromedio de la clase Alumno, que debe calcular el 
-promedio de dicho alumno entre todas las evaluaciones que haya rendido.
-C) La implementación del método buscarAlumnosPorEncimaDe de la clase Curso, que recibe 
-como parámetro un valor que representa un promedio, debiendo crear y devolver una lista 
-de aquellos alumnos que hayan realizado al menos 2 evaluaciones y cuyo promedio de notas 
-supere al promedio enviado por parámetro.}
-
-*/
 public class Test {
-    
+
+    public static void main(String[] args) {
+        Curso curso = new Curso('A', "Programación", 120);
+
+        Alumno juan = new Alumno("Juan", "12345678");
+        Alumno ana = new Alumno("Ana", "87654321");
+        Alumno lucia = new Alumno("Lucia", "11223344");
+
+        juan.setNota(Tipo.PRIMER_EXAMEN, 7);
+        juan.setNota(Tipo.SEGUNDO_EXAMEN, 6);
+
+        ana.setNota(Tipo.PRIMER_EXAMEN, 9);
+        ana.setNota(Tipo.SEGUNDO_EXAMEN, 8);
+        ana.setNota(Tipo.FINAL, 10);
+
+        lucia.setNota(Tipo.PRIMER_EXAMEN, 4); // Solo una evaluación, no entra en la búsqueda
+
+        curso.agregarAlumno(juan);
+        curso.agregarAlumno(ana);
+        curso.agregarAlumno(lucia);
+
+        System.out.println("=== Promedios ===");
+        System.out.println(juan.getNombre() + ": " + juan.calcularPromedio());
+        System.out.println(ana.getNombre() + ": " + ana.calcularPromedio());
+        System.out.println(lucia.getNombre() + ": " + lucia.calcularPromedio());
+
+        System.out.println("\n=== Alumnos con promedio mayor a 7 ===");
+        ArrayList<Alumno> destacados = curso.buscarAlumnosPorEncimaDe(7);
+        for (Alumno a : destacados) {
+            System.out.println(a.getNombre() + " con promedio " + a.calcularPromedio());
+        }
+    }
 }

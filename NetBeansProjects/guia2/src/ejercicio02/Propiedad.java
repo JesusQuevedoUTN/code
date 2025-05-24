@@ -1,8 +1,7 @@
-
 package ejercicio02;
 
-
 class Propiedad {
+
     private Domicilio domicilio;
     private double precio;
     private TipoDeInmoviliaria tipo;
@@ -17,14 +16,14 @@ class Propiedad {
         return domicilio;
     }
 
-    public String getCalle(){
+    public String getCalle() {
         return this.domicilio.getCalle();
     }
-    
-    public int getAltura(){
+
+    public int getAltura() {
         return this.domicilio.getNumero();
     }
-    
+
     public double getPrecio() {
         return this.precio;
     }

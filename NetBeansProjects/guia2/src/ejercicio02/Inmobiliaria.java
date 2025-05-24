@@ -37,7 +37,6 @@ public class Inmobiliaria {
 //        }
 //        return i == propiedades.size(); // no existe
 //    }
-
     public double promedioDePrecio() {
         double promedio = 0;
         for (Propiedad propiedad : propiedades) {

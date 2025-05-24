@@ -91,11 +91,11 @@ boolean indicando la operación fue exitosa o no.
      */
     public boolean modificarDomicilio(String DNI, Domicilio nuevo) {
         Persona persona = buscarPersona(DNI);
-        if (persona!=null) {
-        //  buscarPersona(DNI).setDomicilio(nuevo);
+        if (persona != null) {
+            //  buscarPersona(DNI).setDomicilio(nuevo);
             persona.setDomicilio(nuevo);
         }
-        return persona!=null;
+        return persona != null;
     }
 
     /*
@@ -104,13 +104,13 @@ un barrio determinado por parámetro.
      */
     public ArrayList<Persona> obtenerPorBarrio(String barrio) {
         ArrayList<Persona> listaBarrio = new ArrayList<Persona>();
-        
+
         for (Persona persona : personas) {
             if (persona.getBarrio().equals(barrio)) {
                 listaBarrio.add(persona);
             }
         }
-        
+
         return listaBarrio;
     }
 

@@ -2,10 +2,10 @@
 
 typedef struct
 {
-    int cod_chof;
-    char nom_chof[30];
+    int codidoChofer;
+    char nombreChofer[30];
     int kms; // kilometros recorridos
-    int rec; // Recaudación
+    int recaudacion; // Recaudación
 } Registro;
 
 void mostrarArchivoTexto(); // Ver archivo de texto original (texto.txt)
@@ -13,6 +13,10 @@ void volcarTextoABinario(); // recordar solo una vez se puede hacer
 void mostrarBinarioOrdenadoPorCodigo();
 void mostrarBinarioOrdenadoPorApellido();
 int menu();
+
+/*
+
+*/
 
 #define REGISTROS_DE_VIAJES "../texto 1.txt"
 #define ARCHIVO_CHOFERES "../choferes.dat"
@@ -42,7 +46,6 @@ int main()
             mostrarBinarioOrdenadoPorApellido();
             break;
         }
-        system("pause");
         system("cls");
     } while (opcion != 5);
     return 0;
@@ -80,11 +83,12 @@ void mostrarArchivoTexto()
         printf("[%-12s][%-30s][%-10s]\n", "Cod. Chofer", "Nombre y Apellido", "Kms");
         while (!feof(archivo))
         {
-            fscanf(archivo, "%d,%[^,],%d", &r.cod_chof, r.nom_chof, &r.kms);
-            printf("[%12d][%-30s][%10d]\n", r.cod_chof, r.nom_chof, r.kms);
+            fscanf(archivo, "%d,%[^,],%d", &r.codidoChofer, r.nombreChofer, &r.kms);
+            printf("[%12d][%-30s][%10d]\n", r.codidoChofer, r.nombreChofer, r.kms);
         }
     }
     fclose(archivo);
+    system("pause");
 }
 
 // 1. Pasar matriz a binario en este formato
@@ -128,7 +132,7 @@ void volcarTextoABinario()
 
         //contador++;
         //chofer = (Registro*)realloc(chofer, sizeof(Registro)*(contador+1));
-        //fscanf(viajes, "%d,%[^,],%d", &chofer[contador].cod_chof, chofer[contador].nom_chof, &chofer[contador].kms);
+        //fscanf(viajes, "%d,%[^,],%d", &chofer[contador].codidoChofer, chofer[contador].nombreChofer, &chofer[contador].kms);
     }
     
 

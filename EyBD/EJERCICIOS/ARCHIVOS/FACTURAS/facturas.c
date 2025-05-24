@@ -2,15 +2,15 @@
 
 typedef struct
 {
-    int cod_cli;
-    char nom_cli[30];
+    int codigoDeCliente;
+    char nombreDelCliente[30];
     float cuenta; // aquí acumulo el saldo o lo facturado en total a cada cliente
 } Cliente;
 
 typedef struct
 {
-    int cod_art;
-    char nom_art[30];
+    int codigoDelArticulo;
+    char nombreDelArticulo[30];
     float precio;
     int stock;
     float facturado;
@@ -18,82 +18,79 @@ typedef struct
 
 typedef struct
 {
-    int cod_cli;
-    int cod_art;
+    int codigoDeCliente;
+    int codigoDelArticulo;
     int cantidad;
     float total;
 } Factura;
 
-//UTILS
+// UTILS
 int menu();
-//FUNCION
-void mostrarClientes(FILE* archivo);
-void mostrarArticulos(FILE* archivo);
-void agregarNuevoCliente(FILE* archivo);
-void agregarNuevoArticulo(FILE* archivo);void realizarFacturacion(FILE* cliente, FILE* articulo, FILE* factura);
-void productoEstrella(FILE* archivo);
-void mostrarListaAscendente(FILE* archivo);
-//MOLECULA
+// MENU
+void mostrarClientes();
+void mostrarArticulos();
+void agregarNuevoCliente();
+void agregarNuevoArticulo();
+void realizarFacturacion();
+void productoEstrella();
+void mostrarListaAscendente();
+void borrar();
+// MOLECULA
+
+// ATOMO
 void mostrarCliente(Cliente cliente);
 void mostrarArticulo(Articulo articulo);
-//ATOMO
-int codigoValido(int cod);
-int encontrarCliente(FILE* archivo , int cod);
-int encontrarArticulo(FILE* archivo , int cod);
 
+void mostrarFacturas();
+
+#define _RUTA_CLIENTES "../clientes.dat"
+#define _RUTA_ARTICULOS "../articulos.dat"
+#define _RUTA_FACTURAS "../facturas.dat"
+
+#define _SALIR 8
+#define _PRIMERA_OPCION 0
 
 int main()
 {
-    //INICIAR
+    // INICIAR
     iniciar();
-    FILE *clientes = NULL;
-    FILE *articulos = NULL;
-    FILE *facturas = NULL;
-    char *rutaClientes = "../clientes.dat";
-    char *rutaArticulos = "../articulos.dat";
-    char *rutaFacturas = "../facturas.dat";
-    iniciarBinario(&clientes, rutaClientes);
-    iniciarBinario(&articulos, rutaArticulos);
-    iniciarBinario(&facturas, rutaFacturas);
-    pausa();
+    // MENU
+    int opcion = menu();
 
-    //MENU
-    int opcion;
-    do
+    while (opcion != _SALIR)
     {
-        opcion = menu();
-
-        switch(opcion)
+        switch (opcion)
         {
         case 1:
-            mostrarClientes(clientes);
+            mostrarClientes();
+            system("pause");
             break;
         case 2:
-            mostrarArticulos(articulos);            
+            mostrarArticulos();
+            system("pause");
             break;
         case 3:
-            agregarNuevoCliente(clientes);
+            agregarNuevoCliente();
             break;
         case 4:
-            agregarNuevoArticulo(articulos);
+            agregarNuevoArticulo();
             break;
         case 5:
-            realizarFacturacion(clientes,articulos,facturas);
-            break;    
+            realizarFacturacion();
+            break;
         case 6:
-            productoEstrella(facturas);
+            productoEstrella();
             break;
         case 7:
-            mostrarListaAscendente(clientes);
+            mostrarListaAscendente();
+            break;
+        case 0:
+            borrar();
             break;
         }
-        pausa();
+        system("cls");
+        opcion = menu();
     }
-    while(opcion != 8);
-
-    fclose(clientes);
-    fclose(articulos);
-    fclose(facturas);
 
     return 0;
 }
@@ -103,7 +100,7 @@ int menu()
     int opcion = 0;
     do
     {
-        printf("\t + - - - - - - - - - - - - - - + EL CHINARDO + - - - - - - - - - - - - - - + \n");
+        printf("\t + - - - - - - - - - - + EL CHINARDO + - - - - - - - - - - + \n");
         printf("\t\t[1]\tMostrar clientes.\n");
         printf("\t\t[2]\tMostrar artículos.\n");
         printf("\t\t[3]\tAgregar nuevo cliente.\n");
@@ -112,20 +109,20 @@ int menu()
         printf("\t\t[6]\tVer producto estrella.\n");
         printf("\t\t[7]\tMostrar listado de clientes ordenado por nombre.\n");
         printf("\t\t[8]\tSalir del sistema.\n");
-        printf("\t + - - - - - - - - - - - - - - - - +  S.A  + - - - - - - - - - - - - - - - + \n");
+        printf("\t + - - - - - - - - - - - - +  S.A  + - - - - - - - - - - - + \n\n");
+        printf("\t\t\t[0]\t. . . .\n");
         scanf("%d", &opcion);
         clean();
-    } while (opcion<1 || opcion >8);
+    } while (opcion < _PRIMERA_OPCION || opcion > _SALIR);
     return opcion;
 }
 
-
-void mostrarClientes(FILE* archivo)
+void mostrarClientes()
 {
+    FILE *archivo = fopen(_RUTA_CLIENTES, "rb");
     Cliente cliente;
 
-    rewind(archivo);
-    printf("\n\n\t\t\t Nómina de Clientes\n");
+    printf("\t\t\t Nómina de Clientes\n");
     puts("**************************************************");
     printf("\n%-6s %-25s %10s\n", "Código", "Nombre", "Saldo");
 
@@ -134,72 +131,89 @@ void mostrarClientes(FILE* archivo)
         mostrarCliente(cliente);
     }
     printf("\n");
+    fclose(archivo);
 }
-void mostrarArticulos(FILE* archivo)
+
+void mostrarArticulos()
 {
+    FILE *archivo = fopen(_RUTA_ARTICULOS, "rb");
     Articulo articulo;
 
-    rewind(archivo);
-    printf("\n\n\t\t\t Nómina de Articulos\n");
+    printf("\t\t\t Nómina de Articulos\n");
     puts("**************************************************");
     printf("\n%-6s %-25s %10s %5s %10s\n", "Código", "Nombre", "Precio", "Stock", "Facturando");
 
     while (fread(&articulo, sizeof(articulo), 1, archivo))
     {
-       mostrarArticulo(articulo);
+        mostrarArticulo(articulo);
     }
     printf("\n");
+    fclose(archivo);
 }
-void agregarNuevoCliente(FILE* archivo)
+
+void mostrarFacturas()
 {
+    FILE *archivo = fopen(_RUTA_FACTURAS, "rb");
+    Factura factura;
+
+    while (fread(&factura, sizeof(Factura), 1, archivo))
+    {
+        printf("%d, %d, %d, %.2f", factura.codigoDeCliente, factura.codigoDelArticulo, factura.cantidad, factura.total);
+    }
+    printf("\n");
+    fclose(archivo);
+}
+
+void agregarNuevoCliente()
+{
+    FILE *archivo = fopen(_RUTA_CLIENTES, "rb+");
     Cliente nuevoCliente;
-    int cod;
-    
+    int cod = -1;
+
     printf("Ingrese codigo  del cliente\n");
     printf("Pulse [0] para salir: ");
     scanf(" %d", &cod);
+    fseek(archivo, 0L, SEEK_END);
 
-    //PROBLEMA ACÁ, SI SE REPITE NO TIRA ERROR Y NO VUELVE A PEDIR
-    while (codigoValido(cod))
+    while (cod)
     {
-        if (!encontrarCliente(archivo, cod))
-        {
-            fflush(stdin);
-            fseek(archivo, 0L, SEEK_END);
-            nuevoCliente.cod_cli = cod;
-            
-            printf("Ingrese nombre: ");
-            gets(nuevoCliente.nom_cli);
-            nuevoCliente.cuenta = 0.0;
-            fwrite(&nuevoCliente, sizeof(nuevoCliente), 1, archivo);
-            fflush(stdin);
-        }
-        
-        
+        nuevoCliente.codigoDeCliente = cod;
+
+        printf("Ingrese nombre: ");
+        fflush(stdin);
+        gets(nuevoCliente.nombreDelCliente);
+
+        nuevoCliente.cuenta = 0.0;
+
+        fwrite(&nuevoCliente, sizeof(Cliente), 1, archivo);
+
+        system("cls");
         printf("Ingrese codigo  del cliente\n");
         printf("Pulse [0] para salir: ");
-        scanf("%d", &cod);
+        scanf(" %d", &cod);
     }
+    fclose(archivo);
 }
 
-void agregarNuevoArticulo(FILE* archivo)
+void agregarNuevoArticulo()
 {
+    FILE *archivo = fopen(_RUTA_ARTICULOS, "rb+");
     Articulo nuevoArticulo;
     int cod;
-    
+
     printf("Ingrese codigo  del artículo\n");
     printf("Pulse [0] para salir: ");
     scanf(" %d", &cod);
 
-    while (codigoValido(cod) && !encontrarArticulo(archivo, cod))
+    while (cod)
     {
-        fflush(stdin);
         fseek(archivo, 0L, SEEK_END);
-        nuevoArticulo.cod_art = cod;
-        
-        printf("Ingrese nombre: ");
-        gets(nuevoArticulo.nom_art);
-        
+        nuevoArticulo.codigoDelArticulo = cod;
+
+        printf("Ingrese nombre del artículo: ");
+        fflush(stdin);
+        gets(nuevoArticulo.nombreDelArticulo);
+
         printf("Ingrese precio del artículo: ");
         scanf(" %f", &nuevoArticulo.precio);
 
@@ -208,73 +222,222 @@ void agregarNuevoArticulo(FILE* archivo)
 
         nuevoArticulo.facturado = 0.0;
 
-        fwrite(&nuevoArticulo, sizeof(nuevoArticulo), 1, archivo);
-        fflush(stdin);
-        
+        fwrite(&nuevoArticulo, sizeof(Articulo), 1, archivo);
+
+        system("cls");
         printf("Ingrese codigo  del artículo\n");
         printf("Pulse [0] para salir: ");
-        scanf("%d", &cod);
+        scanf(" %d", &cod);
     }
+    fclose(archivo);
 }
-void realizarFacturacion(FILE* cliente, FILE* articulo, FILE* factura)
-{
 
+
+/*
+perfecto, ya funciona, MENOS, actualizar los clientes y articulos
+*/
+void realizarFacturacion()
+{
+    FILE *fClientes = fopen(_RUTA_CLIENTES, "rb+");
+    FILE *fArticulos = fopen(_RUTA_ARTICULOS, "rb+");
+    FILE *fFacturas = fopen(_RUTA_FACTURAS, "rb+");
+    int clienteABuscar, flag = 0;
+
+    Cliente clienteAFacturar;
+    Articulo articuloAFacturar;
+    Factura nuevaFactura;
+
+    do
+    {
+        mostrarClientes();
+        printf("INGRESE CODIGO DE CLIENTE:");
+        scanf(" %d", &clienteABuscar);
+
+        while (fread(&clienteAFacturar, sizeof(Cliente), 1, fClientes) && flag == 0)
+        {
+            if (clienteAFacturar.codigoDeCliente == clienteABuscar)
+            {
+                flag = 1;
+                fseek(fClientes, -sizeof(Cliente), SEEK_CUR);
+            }
+        }
+
+        if (flag == 1)
+        {
+            int articuloABuscar;
+            flag = 0;
+            do
+            {
+                mostrarArticulos();
+                printf("INGRESE CODIGO DEL ARTICULO:");
+                scanf(" %d", &articuloABuscar);
+
+                while (fread(&articuloAFacturar, sizeof(Articulo), 1, fArticulos) && flag == 0)
+                {
+                    if (articuloAFacturar.codigoDelArticulo == articuloABuscar)
+                    {
+                        flag = 1;
+                        fseek(fArticulos, -sizeof(Articulo), SEEK_CUR);
+                    }
+                }
+
+                if (flag == 1)
+                {
+                    int cantidadAComprar;
+                    mostrarArticulo(articuloAFacturar);
+                    printf("Cuantos %s desea llevar?", articuloAFacturar.nombreDelArticulo);
+                    scanf(" %d", &cantidadAComprar);
+                    if (cantidadAComprar<=articuloAFacturar.stock)
+                    {
+                        articuloAFacturar.stock = articuloAFacturar.stock - cantidadAComprar;
+                        articuloAFacturar.facturado = articuloAFacturar.facturado + cantidadAComprar * articuloAFacturar.precio;
+                        clienteAFacturar.cuenta = clienteAFacturar.cuenta + cantidadAComprar * articuloAFacturar.precio;
+                        
+                        // Reescribir el artículo en la posición correcta
+                        fseek(fArticulos, -sizeof(Articulo), SEEK_CUR);
+                        fwrite(&articuloAFacturar, sizeof(Articulo), 1, fArticulos);
+
+                        
+                        nuevaFactura.codigoDeCliente = clienteAFacturar.codigoDeCliente;
+                        nuevaFactura.codigoDelArticulo = articuloAFacturar.codigoDelArticulo;
+                        nuevaFactura.cantidad = cantidadAComprar;
+                        nuevaFactura.total = cantidadAComprar * articuloAFacturar.precio;
+                        fwrite(&nuevaFactura, sizeof(Factura),1,fFacturas);
+                        printf("COMPRA REALIZADA\n");
+                        system("pause");
+                    }
+                }
+                else
+                {
+                    printf("ERROR. No se encontró\n");
+                    system("pause");
+                }
+                rewind(fArticulos);
+                system("cls");
+                flag = 0;
+                
+            } while (articuloABuscar);
+            
+            fseek(fClientes,-sizeof(Cliente),SEEK_CUR);
+            fwrite(&clienteAFacturar, sizeof(Cliente), 1, fClientes);
+            
+            flag = 0;
+            rewind(fClientes);
+            rewind(fArticulos);
+            
+        }
+        else
+        {
+            printf("ERROR. no se encontró\n");
+            system("pause");
+        }
+        flag = 0;
+        rewind(fClientes);
+        rewind(fArticulos);
+        system("cls");
+    } while (clienteABuscar);
+
+    fclose(fClientes);
+    fclose(fArticulos);
+    fclose(fFacturas);
 }
-void productoEstrella(FILE* archivo)
-{
 
+void productoEstrella()
+{
+    FILE *archivo =fopen (_RUTA_ARTICULOS,"rb");
+    Articulo producto, estrella;
+    int mayorCantidadDeVentas = 0;
+    while (fread(&producto, sizeof(Articulo),1,archivo))
+    {
+        if (producto.facturado > mayorCantidadDeVentas)
+        {
+            estrella = producto;
+        }
+    }
+    printf("Producto estrella: ");
+    mostrarArticulo(estrella);
+    system("pause");
 }
-void mostrarListaAscendente(FILE* archivo)
-{
 
+/*
+armé esto, pero no sé como decirle, si el nombre es mayor, entonces, ponerlo al final
+*/
+void mostrarListaAscendente()
+{
+    FILE *archivo = fopen(_RUTA_CLIENTES, "rb");
+    if (!archivo) return;
+
+    int cantidad = 0;
+    Cliente *lista = NULL;
+    Cliente temporal;
+
+    // Leer todos los clientes
+    while (fread(&temporal, sizeof(Cliente), 1, archivo))
+    {
+        lista = realloc(lista, sizeof(Cliente) * (cantidad + 1));
+        lista[cantidad] = temporal;
+        cantidad++;
+    }
+
+    // Ordenar alfabéticamente por nombre (bubble sort simple)
+    for (int i = 0; i < cantidad - 1; i++)
+    {
+        for (int j = 0; j < cantidad - i - 1; j++)
+        {
+            if (strcmp(lista[j].nombreDelCliente, lista[j + 1].nombreDelCliente) > 0)
+            {
+                Cliente aux = lista[j];
+                lista[j] = lista[j + 1];
+                lista[j + 1] = aux;
+            }
+        }
+    }
+
+    // Mostrar
+    for (int i = 0; i < cantidad; i++)
+    {
+        mostrarCliente(lista[i]);
+    }
+
+    fclose(archivo);
+    free(lista);
+    system("pause");
+}
+
+void borrar()
+{
+    FILE *archivo = NULL;
+    int opcion;
+
+    do
+    {
+        printf("Cual archivo desea borrar?\n");
+        printf("0. Salir\t\t1. Clientes\t\t2. Articulos\t\t3. Facturas\n");
+        scanf(" %d", &opcion);
+        switch (opcion)
+        {
+        case 1:
+            archivo = fopen(_RUTA_CLIENTES, "wb");
+            break;
+        case 2:
+            archivo = fopen(_RUTA_ARTICULOS, "wb");
+            break;
+
+        case 3:
+            archivo = fopen(_RUTA_FACTURAS, "wb");
+            break;
+        }
+        system("cls");
+    } while (opcion != 0);
+
+    fclose(archivo);
 }
 
 void mostrarCliente(Cliente cliente)
 {
-    printf("%-6d %-25s %10.2f\n", cliente.cod_cli, cliente.nom_cli, cliente.cuenta);
+    printf("%-6d %-30s %10.2f\n", cliente.codigoDeCliente, cliente.nombreDelCliente, cliente.cuenta);
 }
 void mostrarArticulo(Articulo articulo)
 {
-    printf("%-6d %-25s %3.2f %3d %10.2f\n", articulo.cod_art, articulo.nom_art, articulo.precio, articulo.stock, articulo.facturado);
-}
-
-int codigoValido(int cod)
-{
-    return cod && cod>=0;
-}
-
-int encontrarCliente(FILE* archivo , int cod)
-{
-    Cliente cliente;
-    int flag = 0;
-    fread(&cliente, sizeof(cliente), 1, archivo);
-    while (!feof(archivo) && flag)
-    {
-        if (cod == cliente.cod_cli)
-        {
-            flag = 1;
-        }
-        else
-            fread(&cliente, sizeof(cliente), 1, archivo);
-    }
-
-    return flag;
-}
-
-int encontrarArticulo(FILE* archivo , int cod)
-{
-    Articulo articulo;
-    int flag = 0;
-    fread(&articulo, sizeof(articulo), 1, archivo);
-    while (!feof(archivo) && flag)
-    {
-        if (cod == articulo.cod_art)
-        {
-            flag = 1;
-        }
-        else
-            fread(&articulo, sizeof(articulo), 1, archivo);
-    }
-
-    return flag;
+    printf("%-6d %-30s %3.2f %3d %10.2f\n", articulo.codigoDelArticulo, articulo.nombreDelArticulo, articulo.precio, articulo.stock, articulo.facturado);
 }

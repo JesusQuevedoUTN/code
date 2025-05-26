@@ -1,10 +1,13 @@
+/*
+
+*/
 #include "../../C.h"
 
 typedef struct
 {
     int codidoChofer;
     char nombreChofer[30];
-    int kms; // kilometros recorridos
+    int kms;         // kilometros recorridos
     int recaudacion; // Recaudación
 } Registro;
 
@@ -14,9 +17,10 @@ void mostrarBinarioOrdenadoPorCodigo();
 void mostrarBinarioOrdenadoPorApellido();
 int menu();
 
-/*
+void mostrarRegistro(Registro *archivo);
 
-*/
+
+
 
 #define REGISTROS_DE_VIAJES "../texto 1.txt"
 #define ARCHIVO_CHOFERES "../choferes.dat"
@@ -102,12 +106,11 @@ void mostrarArchivoTexto()
 // 3. MALLOC ESTRUCTURA ANTES DEL BINARIO.
 // 4. EL ARCHIVO SOLO SE PASA UNA VEZ. INDICAR ERROR.
 // INICIAR
+
 void volcarTextoABinario()
 {
     FILE *choferes = fopen(ARCHIVO_CHOFERES, "rb+");
     FILE *viajes = fopen(REGISTROS_DE_VIAJES, "r");
-    int contador = 0;
-    Registro *chofer = (Registro*)malloc(sizeof(Registro));
 
     if (!choferes)
     {
@@ -117,35 +120,119 @@ void volcarTextoABinario()
             printf("Se creo un nuevo archivo\n");
         }
     }
-    else
-        printf("El archivo se abrio correctamente\n");
 
-    while (!feof(viajes))
+    Registro leidoDelTexto, leidoDelBinario;
+    int flag = 0;
+    while ( fscanf(viajes, "%d,%[^,],%d", &leidoDelTexto.codidoChofer, leidoDelTexto.nombreChofer, &leidoDelTexto.kms) )
     {
-        //Sacamos el dato del texto
-        //Comparar si se repite en el Binario
-            //SI: 
-                //Sumatoria kilometros
-            //NO: 
-                //Meter datos
-        //Calcular recaudacion
+        while (fread(&leidoDelBinario, sizeof(Registro), 1, choferes) && flag == 0)
+        {
+            if (leidoDelBinario.codidoChofer == leidoDelTexto.codidoChofer)
+            {
+                leidoDelBinario.kms = leidoDelBinario.kms + leidoDelTexto.kms ; 
+                fseek(choferes, -sizeof(Registro), SEEK_CUR);
+                leidoDelBinario.recaudacion = leidoDelBinario.kms * PRECIO_POR_KM;
+                fwrite(&leidoDelBinario,sizeof(Registro),1,choferes);
+                flag = 1;
+            }
+        }
+        
+        if (flag == 0)
+        {
+            fseek(choferes,0L,SEEK_END);
+            leidoDelBinario.recaudacion = leidoDelBinario.kms * PRECIO_POR_KM;
+            fwrite(&leidoDelBinario,sizeof(Registro),1,choferes);
+        }
+        
 
-        //contador++;
-        //chofer = (Registro*)realloc(chofer, sizeof(Registro)*(contador+1));
-        //fscanf(viajes, "%d,%[^,],%d", &chofer[contador].codidoChofer, chofer[contador].nombreChofer, &chofer[contador].kms);
+        rewind(choferes);
+        flag = 0;
     }
-    
 
-
-    free(chofer);
     fclose(choferes);
     fclose(viajes);
 }
 
 void mostrarBinarioOrdenadoPorCodigo()
 {
+    FILE *archivo = fopen(ARCHIVO_CHOFERES, "rb");
+
+    Registro *lista = (Registro*)malloc(sizeof(Registro));
+    int contador = 0;
+    while (fread(&lista[contador],sizeof(Registro),1,archivo))
+    {
+        contador++;
+    }
+    rewind(archivo);
+
+    for (int i = 0; i < contador; i++)
+    {
+        for (int j = 0; j < contador - i; j++)
+        {
+            if (lista[j].codidoChofer > lista[j + 1].codidoChofer)
+            {
+                Registro aux = lista[j];
+                lista[j] = lista[j + 1];
+                lista[j + 1] = aux;
+            }
+        }
+    }
+    rewind(archivo);
+    
+
+    // Cod. Chofer   Nombre y Apellido   Total Kms. Recorridos   Recaudación Total
+    //----------------------------------------------------------------------------------------------------------
+    // n)            FRANCISCO REAL      1750                    $17500
+    printf("%-12s\t%-30s\t%-22s\t%-20s\n", "Cod. Chofer", "Nombre y Apellido", "Total Kms. Recorridos", "Recaudación Total");
+    printf("----------------------------------------------------------------------------------------------------\n");
+    for (int i = 0; i < contador; i++)
+    {
+        printf("%12d\t%-30s\t%-22d\t$%-20d\n", lista[i].codidoChofer, lista[i].nombreChofer, lista[i].kms, lista[i].recaudacion);
+    }
+
+    fclose(archivo);
+    free(lista);
+    system("pause");
 }
 
 void mostrarBinarioOrdenadoPorApellido()
 {
+    FILE *archivo = fopen(ARCHIVO_CHOFERES, "rb");
+
+    Registro *lista = (Registro*)malloc(sizeof(Registro));
+    int contador = 0;
+    while (fread(&lista[contador],sizeof(Registro),1,archivo))
+    {
+        contador++;
+    }
+    rewind(archivo);
+
+    for (int i = 0; i < contador; i++)
+    {
+        for (int j = 0; j < contador - i; j++)
+        {
+            if (strcmp(lista[j].nombreChofer,lista[j + 1].nombreChofer) > 0)
+            {
+                Registro aux = lista[j];
+                lista[j] = lista[j + 1];
+                lista[j + 1] = aux;
+            }
+        }
+    }
+    rewind(archivo);
+    
+
+    // Cod. Chofer   Nombre y Apellido   Total Kms. Recorridos   Recaudación Total
+    //----------------------------------------------------------------------------------------------------------
+    // n)            FRANCISCO REAL      1750                    $17500
+    printf("%-12s\t%-30s\t%-22s\t%-20s\n", "Cod. Chofer", "Nombre y Apellido", "Total Kms. Recorridos", "Recaudación Total");
+    printf("----------------------------------------------------------------------------------------------------\n");
+    for (int i = 0; i < contador; i++)
+    {
+        printf("%12d\t%-30s\t%-22d\t$%-20d\n", lista[i].codidoChofer, lista[i].nombreChofer, lista[i].kms, lista[i].recaudacion);
+    }
+
+    fclose(archivo);
+    free(lista);
+    system("pause");
 }

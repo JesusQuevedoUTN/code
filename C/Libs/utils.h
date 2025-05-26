@@ -10,10 +10,6 @@
     #include<ctype.h>
 
     //UTILS
-    void tecla()
-    {
-        system("pause");
-    }
 
     void limpiarBuffer() {
         int c;
@@ -24,20 +20,12 @@
         #ifdef _WIN32
         system("chcp 65001 < nul");
         #endif
+        system("cls");
     }
     
     //MIOS
-    void iniciar()
-    {
-        utf8();
-        system("cls");
-    }
-    void pausa()
-    {
+    void pausa(){
         system("pause");
-        system("cls");
-    }
-    void clean(){
         system("cls;");
     }
 

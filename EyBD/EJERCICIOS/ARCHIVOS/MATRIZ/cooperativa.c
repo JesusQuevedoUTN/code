@@ -1,14 +1,24 @@
+<<<<<<< HEAD
 /*
 
 */
+=======
+>>>>>>> copia
 #include "../../C.h"
 
 typedef struct
 {
+<<<<<<< HEAD
     int codidoChofer;
     char nombreChofer[30];
     int kms;         // kilometros recorridos
     int recaudacion; // Recaudación
+=======
+    int cod_chof;
+    char nom_chof[30];
+    int kms; // kilometros recorridos
+    int rec; // Recaudación
+>>>>>>> copia
 } Registro;
 
 void mostrarArchivoTexto(); // Ver archivo de texto original (texto.txt)
@@ -17,11 +27,14 @@ void mostrarBinarioOrdenadoPorCodigo();
 void mostrarBinarioOrdenadoPorApellido();
 int menu();
 
+<<<<<<< HEAD
 void mostrarRegistro(Registro *archivo);
 
 
 
 
+=======
+>>>>>>> copia
 #define REGISTROS_DE_VIAJES "../texto 1.txt"
 #define ARCHIVO_CHOFERES "../choferes.dat"
 #define PRECIO_POR_KM 100
@@ -50,6 +63,10 @@ int main()
             mostrarBinarioOrdenadoPorApellido();
             break;
         }
+<<<<<<< HEAD
+=======
+        system("pause");
+>>>>>>> copia
         system("cls");
     } while (opcion != 5);
     return 0;
@@ -87,12 +104,20 @@ void mostrarArchivoTexto()
         printf("[%-12s][%-30s][%-10s]\n", "Cod. Chofer", "Nombre y Apellido", "Kms");
         while (!feof(archivo))
         {
+<<<<<<< HEAD
             fscanf(archivo, "%d,%[^,],%d", &r.codidoChofer, r.nombreChofer, &r.kms);
             printf("[%12d][%-30s][%10d]\n", r.codidoChofer, r.nombreChofer, r.kms);
         }
     }
     fclose(archivo);
     system("pause");
+=======
+            fscanf(archivo, "%d,%[^,],%d", &r.cod_chof, r.nom_chof, &r.kms);
+            printf("[%12d][%-30s][%10d]\n", r.cod_chof, r.nom_chof, r.kms);
+        }
+    }
+    fclose(archivo);
+>>>>>>> copia
 }
 
 // 1. Pasar matriz a binario en este formato
@@ -106,11 +131,19 @@ void mostrarArchivoTexto()
 // 3. MALLOC ESTRUCTURA ANTES DEL BINARIO.
 // 4. EL ARCHIVO SOLO SE PASA UNA VEZ. INDICAR ERROR.
 // INICIAR
+<<<<<<< HEAD
 
+=======
+>>>>>>> copia
 void volcarTextoABinario()
 {
     FILE *choferes = fopen(ARCHIVO_CHOFERES, "rb+");
     FILE *viajes = fopen(REGISTROS_DE_VIAJES, "r");
+<<<<<<< HEAD
+=======
+    int contador = 0;
+    Registro *chofer = (Registro*)malloc(sizeof(Registro));
+>>>>>>> copia
 
     if (!choferes)
     {
@@ -120,6 +153,7 @@ void volcarTextoABinario()
             printf("Se creo un nuevo archivo\n");
         }
     }
+<<<<<<< HEAD
 
     Registro leidoDelTexto, leidoDelBinario;
     int flag = 0;
@@ -149,12 +183,36 @@ void volcarTextoABinario()
         flag = 0;
     }
 
+=======
+    else
+        printf("El archivo se abrio correctamente\n");
+
+    while (!feof(viajes))
+    {
+        //Sacamos el dato del texto
+        //Comparar si se repite en el Binario
+            //SI: 
+                //Sumatoria kilometros
+            //NO: 
+                //Meter datos
+        //Calcular recaudacion
+
+        //contador++;
+        //chofer = (Registro*)realloc(chofer, sizeof(Registro)*(contador+1));
+        //fscanf(viajes, "%d,%[^,],%d", &chofer[contador].cod_chof, chofer[contador].nom_chof, &chofer[contador].kms);
+    }
+    
+
+
+    free(chofer);
+>>>>>>> copia
     fclose(choferes);
     fclose(viajes);
 }
 
 void mostrarBinarioOrdenadoPorCodigo()
 {
+<<<<<<< HEAD
     FILE *archivo = fopen(ARCHIVO_CHOFERES, "rb");
 
     Registro *lista = (Registro*)malloc(sizeof(Registro));
@@ -193,10 +251,13 @@ void mostrarBinarioOrdenadoPorCodigo()
     fclose(archivo);
     free(lista);
     system("pause");
+=======
+>>>>>>> copia
 }
 
 void mostrarBinarioOrdenadoPorApellido()
 {
+<<<<<<< HEAD
     FILE *archivo = fopen(ARCHIVO_CHOFERES, "rb");
 
     Registro *lista = (Registro*)malloc(sizeof(Registro));
@@ -235,4 +296,6 @@ void mostrarBinarioOrdenadoPorApellido()
     fclose(archivo);
     free(lista);
     system("pause");
+=======
+>>>>>>> copia
 }

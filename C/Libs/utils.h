@@ -26,7 +26,14 @@
     //MIOS
     void pausa(){
         system("pause");
+<<<<<<< HEAD
         system("cls;");
+=======
+        clean();
+    }
+    void clean(){
+        system("cls");
+>>>>>>> copia
     }
 
     //FILE

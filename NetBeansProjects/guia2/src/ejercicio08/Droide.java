@@ -21,13 +21,12 @@ public class Droide {
 
     //METODOS MAIN
     //1
-    public void agregarPiezaOperativa(TipoDePieza tipoDePieza, Estado estado) {
-        Pieza pieza = new Pieza(tipoDePieza, estado);
-        if (estado != Estado.ROTO && estado != Estado.IRREPARABLE) {
-            this.piezasSanas.add(pieza);
-        } else {
-            this.piezasInservibles.add(pieza);
-        }
+    public void agregarPiezaOperativa(Pieza pieza) {
+        this.piezasSanas.add(pieza);
+    }
+
+    public void agregarPiezaNoOperativa(Pieza pieza) {
+        this.piezasInservibles.add(pieza);
     }
 
     //2
@@ -42,34 +41,25 @@ public class Droide {
     }
 
     //4
-    public TipoDeEstado autoRepararse() {
-        TipoDeEstado estado = null;
-        ArrayList<Pieza> reemplazar = new ArrayList<Pieza>();
-        Droide partesDeRepuesto = null;
-        //Si hay piezas en esta lista, implica que es mejorable
-        if (!piezasInservibles.isEmpty()) {
-            for (Pieza pieza : piezasInservibles) {
-                partesDeRepuesto = buscarParteEnDroides(pieza);
-                if (partesDeRepuesto != null) {
-                    //lo encontró, entonces, se agrega a las piezas sanas, se pone en las de reemplazo para luego borrarlas
-                    //en el droide encontrado, se intercambian las piezas
-                    intercambiarPiezas(partesDeRepuesto, pieza);
-                    piezasSanas.add(pieza);
-                    reemplazar.add(pieza);
-                }
+    public ResultadoReparacion autoRepararse() {
+        int i = 0;
+        Pieza pieza;
+        Pieza piezaOperativa;
+        boolean encontreAlMenosUnaPieza = false;
+
+        while (i < this.piezasInservibles.size()) {
+            pieza = this.piezasInservibles.get(i);
+            piezaOperativa = this.buscarPiezaOperativa(pieza);
+
+            if (piezaOperativa != null) {
+                encontreAlMenosUnaPieza = true;
+                this.reemplazarPieza(pieza, piezaOperativa);
+            } else {
+                i++;
             }
-            piezasInservibles.removeAll(reemplazar);
         }
 
-        //si acaba vacía esta lista, implica que se reparó, si no se reparó al 100, se busca que solo esté roto, pero no inservible
-        if (!piezasInservibles.isEmpty()) {
-            estado = TipoDeEstado.COMPLETAMENTE_OPERATIVO;
-        } else if (funcional()) {
-            estado = TipoDeEstado.REPARACION_PARCIAL;
-        } else {
-            estado = TipoDeEstado.REPARACION_IMPOSIBLE;
-        }
-        return estado;
+        return this.obtenerResultadoRepacion(encontreAlMenosUnaPieza);
     }
 
     //GETTER
@@ -82,80 +72,68 @@ public class Droide {
     }
 
     //METODOS
-    private Droide buscarParteEnDroides(Pieza buscada) {
-        Droide encontrado = null;
-//        Pieza mejorable = new Pieza(buscada.getNombre(), Estado.IRREPARABLE);
-        Pieza encontrada = null;
-
-        for (Droide droide : chatarras) {
-            encontrada = buscarParteEnDroide(droide, buscada);
-//            encontrada = buscarPieza(buscada);
-//            if (encontrada != null && encontrada.getEstado().ordinal() < mejorable.getEstado().ordinal()) {
-//                encontrado ;
-//            }
+    private Pieza obtenerPiezaOperativa(Pieza buscada) {
+        for (Pieza p : this.piezasSanas) {
+            if (p.getNombre() == buscada.getNombre()) {
+                this.piezasSanas.remove(p); // Sacamos la pieza del droide actual
+                return p;
+            }
         }
-
-        return encontrado;
+        return null;
     }
 
-    private Pieza buscarParteEnDroide(Droide seleccionado, Pieza buscar) {
-        Pieza encontrada = new Pieza(buscar.getNombre(), Estado.IRREPARABLE);
-        ArrayList<Pieza> piezasDeLaChatarra = new ArrayList<Pieza>();
+    private Pieza buscarPiezaOperativa(Pieza pieza) {
+        int i = 0;
+        Droide d;
+        Pieza piezaEncontrada = null;
 
-        for (Droide robot : chatarras) {
-            piezasDeLaChatarra = robot.getPiezasSanas();
-
+        while (i < this.chatarras.size() && piezaEncontrada == null) {
+            d = this.chatarras.get(i);
+            piezaEncontrada = d.obtenerPiezaOperativa(pieza);  // ahora correcto
+            i++;
         }
 
-        return encontrada;
+        return piezaEncontrada;
     }
 
-//    private void reemplazarPieza(Pieza aReemplazar) {
-//        Pieza mejorar = new Pieza(aReemplazar.getNombre(), Estado.IRREPARABLE);
-//        Pieza encontrada = null;
-//        for (Droide droide : chatarras) {
-//            encontrada = buscarPieza(aReemplazar);
-//            if (encontrada != null && encontrada.getEstado().ordinal() < mejorar.getEstado().ordinal()) {
-//                cambiarPieza(encontrada, droide);
-//            }
-//        }
-//    }
-//
-//    private Pieza buscarPieza(Pieza buscada) {
-//        int i = 0;
-//        while (i < piezas.size() && (piezas.get(i).getNombre() != buscada.getNombre())) {
-//            i++;
-//        }
-//        return i == piezas.size() ? null : piezas.get(i);
-//    }
-//
-//    private void cambiarPieza(Pieza encontrada, Droide robot) {
-//        Pieza auxiliar = robot.buscarPieza(encontrada);
-//        intercambiarPiezas(buscarPieza(encontrada),robot.buscarPieza(encontrada));
-//        intercambiarPiezas(auxiliar,buscarPieza(encontrada));
-//    }
-    private void intercambiarPiezas(Pieza pie1, Pieza pie2) {
-        Pieza aux = pie1;
-        pie2 = pie1;
-        pie1 = aux;
+    private void reemplazarPieza(Pieza piezaNoOperativa, Pieza piezaOperativa) {
+        this.piezasInservibles.remove(piezaNoOperativa);
+        this.piezasSanas.add(piezaOperativa);
     }
 
     private void mostrarPiezas() {
-        if (!piezas.isEmpty()) {
+        if (!piezasSanas.isEmpty()) {
             int i = 1;
-            for (Pieza p : piezas) {
+            System.out.println("Piezas Sanas:");
+            for (Pieza p : piezasSanas) {
                 System.out.println(i + "." + p);
                 i++;
             }
+        } else {
+            System.out.println("No hay piezas sanas.");
+        }
+        if (!piezasInservibles.isEmpty()) {
+            int i = 1;
+            System.out.println("Piezas Inservibles:");
+            for (Pieza p : piezasInservibles) {
+                System.out.println(i + "." + p);
+                i++;
+            }
+        } else {
+            System.out.println("No hay piezas inservibles.");
         }
     }
 
-    private boolean funcional() {
-        int i = 0;
-        while (i < piezasInservibles.size() && piezasInservibles.get(i).getEstado() != Estado.IRREPARABLE) {
-            i++;
+    private ResultadoReparacion obtenerResultadoRepacion(boolean encontreAlMenosUnaPieza) {
+        ResultadoReparacion estado = ResultadoReparacion.REPARACION_IMPOSIBLE;
+
+        if (piezasInservibles.isEmpty()) {
+            estado = ResultadoReparacion.COMPLETAMENTE_OPERATIVO;
+        } else if (encontreAlMenosUnaPieza) {
+            estado = ResultadoReparacion.REPARACION_PARCIAL;
         }
-        return i == piezasInservibles.size();
+
+        return estado;
     }
 
 }

@@ -259,7 +259,7 @@ void MostrarCorredores()
 
     Corredor aux;
     FILE *Archivo;
-    Archivo = fopen("corredores.dat", "rb");
+    Archivo = fopen(ARCH_CORREDORES, "rb");
     if (Archivo != NULL)
     {
         fread(&aux, sizeof(Corredor), 1, Archivo);
@@ -317,9 +317,9 @@ int compararCorredoresPorTiempo(const void *a, const void *b)
 
     // Para orden descendente (mayor recaudación primero)
     if (recA < recB)
-        return 1;
-    else if (recA > recB)
         return -1;
+    else if (recA > recB)
+        return 1;
     else
         return 0;
 }

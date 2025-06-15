@@ -1,8 +1,9 @@
+
 package ejercicio08;
 
 // Autor: Chisus
 // Fecha de creación: 17/05/2025
-public class Test {
+public class Test8 {
 
     public static void main(String[] args) {
         //ANALISIS
@@ -37,21 +38,21 @@ public class Test {
         //REQUIERA DE AMBOS
 
         //LE AGREGAMOS PIEZAS A ARTUR, ES UN ROBOT MUY COMPLETO
-        arturitu.agregarPiezaOperativa(TipoDePieza.SENSOR_DE_PROXIMIDAD, Estado.ROTO);
-        arturitu.agregarPiezaOperativa(TipoDePieza.BATERIA_DE_LITIO, Estado.IRREPARABLE);
-        arturitu.agregarPiezaOperativa(TipoDePieza.VISOR_NOCTURNO, Estado.GASTADO);
-        arturitu.agregarPiezaOperativa(TipoDePieza.DISCO_DE_ALMACENAMIENTO, Estado.SANO);
+        arturitu.agregarPiezaNoOperativa(new Pieza(TipoDePieza.SENSOR_DE_PROXIMIDAD) );
+        arturitu.agregarPiezaNoOperativa(new Pieza(TipoDePieza.BATERIA_DE_LITIO) );
+        arturitu.agregarPiezaNoOperativa(new Pieza(TipoDePieza.VISOR_NOCTURNO) ); 
+        arturitu.agregarPiezaOperativa(new Pieza(TipoDePieza.DISCO_DE_ALMACENAMIENTO) );
 
         //CITRI DEBE TENER SUS PROPIAS PIEZAS, NO LE HACE FALTA SENSOR PERO SI UN MODULO DE TRADUCCION
-        citripio.agregarPiezaOperativa(TipoDePieza.VISOR_NOCTURNO, Estado.SANO);
-        citripio.agregarPiezaOperativa(TipoDePieza.BATERIA_DE_LITIO, Estado.SANO);
-        citripio.agregarPiezaOperativa(TipoDePieza.DISCO_DE_ALMACENAMIENTO, Estado.SANO);
-        citripio.agregarPiezaOperativa(TipoDePieza.MODULO_DE_IDIOMAS, Estado.ROTO);
-        citripio.agregarPiezaOperativa(TipoDePieza.SENSOR_DE_PROXIMIDAD, Estado.IRREPARABLE);
+        citripio.agregarPiezaOperativa(new Pieza( TipoDePieza.VISOR_NOCTURNO) );
+        citripio.agregarPiezaOperativa(new Pieza( TipoDePieza.BATERIA_DE_LITIO) );
+        citripio.agregarPiezaOperativa(new Pieza( TipoDePieza.DISCO_DE_ALMACENAMIENTO) );
+        citripio.agregarPiezaNoOperativa(new Pieza( TipoDePieza.MODULO_DE_IDIOMAS) );
+        citripio.agregarPiezaNoOperativa(new Pieza( TipoDePieza.SENSOR_DE_PROXIMIDAD) );
         //BIBI ES UN ROBOT SIMPLE, APENAS SI TIENE PIEZAS
-        bibieit.agregarPiezaOperativa(TipoDePieza.SENSOR_DE_PROXIMIDAD, Estado.SANO);
-        bibieit.agregarPiezaOperativa(TipoDePieza.VISOR_NOCTURNO, Estado.SANO);
-        bibieit.agregarPiezaOperativa(TipoDePieza.BATERIA_DE_LITIO, Estado.DANIADO);
+        bibieit.agregarPiezaOperativa(new Pieza( TipoDePieza.SENSOR_DE_PROXIMIDAD) );
+        bibieit.agregarPiezaOperativa(new Pieza( TipoDePieza.VISOR_NOCTURNO) );
+        bibieit.agregarPiezaNoOperativa(new Pieza( TipoDePieza.BATERIA_DE_LITIO) );
     }
 
     static void mostrarEstados(Droide arturitu, Droide citripio, Droide bibieit) {

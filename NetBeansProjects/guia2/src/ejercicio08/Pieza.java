@@ -5,12 +5,10 @@ package ejercicio08;
 public class Pieza {
 
     private TipoDePieza nombre;
-    private Estado estado;
 
     //CONSTRUCT
-    public Pieza(TipoDePieza nombre, Estado estado) {
+    public Pieza(TipoDePieza nombre) {
         this.nombre = nombre;
-        this.estado = estado;
     }
 
     //GETTERS
@@ -18,18 +16,9 @@ public class Pieza {
         return nombre;
     }
 
-    public Estado getEstado() {
-        return estado;
-    }
-
-    //METODOS
-    public void dañar() {
-        this.estado = Estado.DANIADO;
-    }
-
     @Override
     public String toString() {
-        return nombre + ". Estado= " + estado.name();
+        return "Pieza{" + "nombre=" + nombre + '}';
     }
 
 }

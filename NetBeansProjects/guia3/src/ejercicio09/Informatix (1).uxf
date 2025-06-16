@@ -1,0 +1,40 @@
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><element><id>UMLClass</id><coordinates><x>416</x><y>8</y><w>152</w><h>80</h></coordinates><panel_attributes>Informatix
+--
+
+--
++cantServiciosSimples():int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>624</x><y>376</y><w>152</w><h>96</h></coordinates><panel_attributes>Insumos
+--
+-nombre:String
+-tipo:String
+-porcentajeDeGanancia:float
+-precioDeLista:float
+--
++armarFactura():Factura</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>32</x><y>536</y><w>152</w><h>96</h></coordinates><panel_attributes>ServicioDeArmado
+--
+-valorPorHora: int = 250
+--
++calcularPrecio():float
++montoTotalFacturado():float</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>336</x><y>528</y><w>152</w><h>96</h></coordinates><panel_attributes>ServicioDeReparacion
+--
+-dificultar:int
+-valorPorHora: int = 180
+--
++calcularPrecio():float
++montoTotalFacturado():float</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>176</x><y>464</y><w>24</w><h>88</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>328</x><y>464</y><w>24</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>UMLClass</id><coordinates><x>184</x><y>376</y><w>152</w><h>96</h></coordinates><panel_attributes>/Servicios/
+--
+-cantidadDeHoras:int
+--
+/+calcularPrecio():float/
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>480</x><y>80</y><w>104</w><h>120</h></coordinates><panel_attributes>lt=&lt;-
+m1=1..*
+-historialDeVentas</panel_attributes><additional_attributes>10;130;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>384</x><y>384</y><w>208</w><h>64</h></coordinates><panel_attributes>Matematicas
+--
+-IVA: float = 1.21
+--
++sumarPorcentaje(precio:float):double
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>400</x><y>184</y><w>152</w><h>96</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+/Facturable/
+--
+
+--
+/+montoTotalFacturado():float/</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>544</x><y>272</y><w>96</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;100;130</additional_attributes></element><element><id>Relation</id><coordinates><x>328</x><y>272</y><w>88</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>90;10;10;130</additional_attributes></element></diagram>

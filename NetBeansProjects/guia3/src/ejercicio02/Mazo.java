@@ -13,10 +13,10 @@ class Mazo {
         this.cartas = new ArrayList<Carta>();
     }
 
-    public void mostrar(){
-        
+    public void mostrar() {
+
     }
-    
+
     public void agregarCarta(Carta carta) {
         cartas.add(carta);
     }
@@ -26,7 +26,7 @@ class Mazo {
     }
 
     //METODOS
-    public ArrayList<Carta> primerasNCartasSegunPalo(TipoDePalo tp, int n){
+    public ArrayList<Carta> primerasNCartasSegunPalo(TipoDePalo tp, int n) {
         return null;
     }
 
@@ -34,11 +34,11 @@ class Mazo {
         return -1;
     }
 
-    public void mezclar(){
-        
+    public void mezclar() {
+
     }
-    
-    public void mostrarRepartidas (int nJugadores, int cartasXJugador){
-        
+
+    public void mostrarRepartidas(int nJugadores, int cartasXJugador) {
+
     }
 }

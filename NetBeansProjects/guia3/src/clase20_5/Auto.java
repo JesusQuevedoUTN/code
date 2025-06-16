@@ -16,12 +16,12 @@ public class Auto extends Vehiculo {
 
     void mostrar() {
         System.out.println(toString());
-        
+
     }
 
     @Override
     public String toString() {
-        return  "Auto{" + "tieneAire=" + tieneAire + ", " + cacharro + '}' + "\n" + super.toString();
+        return "Auto{" + "tieneAire=" + tieneAire + ", " + cacharro + '}' + "\n" + super.toString();
     }
 
 }

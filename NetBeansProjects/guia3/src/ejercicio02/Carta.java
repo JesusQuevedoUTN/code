@@ -18,4 +18,3 @@ public class Carta {
         return deFrente ? this.toString() : "Carta boca abajo";
     }
 }
-

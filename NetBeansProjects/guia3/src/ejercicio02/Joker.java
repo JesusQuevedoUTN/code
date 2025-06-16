@@ -2,7 +2,6 @@ package ejercicio02;
 
 // Autor: Chisus
 // Fecha de creación: 27/05/2025
-
 class Joker extends Carta {
 
     private boolean enColor;
@@ -16,6 +15,4 @@ class Joker extends Carta {
         return "Joker{" + "enColor=" + enColor + '}';
     }
 
-    
 }
-

@@ -11,7 +11,7 @@ public class Vehiculo {
         this.modelo = modelo;
         this.patente = patente;
     }
-    
+
     public void acelerar() {
         System.out.println("acelero");
     }
@@ -28,6 +28,5 @@ public class Vehiculo {
     public String toString() {
         return "Vehiculo{" + "marca=" + marca + ", modelo=" + modelo + ", patente=" + patente + '}';
     }
-    
-    
+
 }

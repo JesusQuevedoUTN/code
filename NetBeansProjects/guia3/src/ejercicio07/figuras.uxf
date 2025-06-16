@@ -1,0 +1,27 @@
+<diagram program="umletino" version="15.1"><zoom_level>19</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>19</y><w>361</w><h>171</h></coordinates><panel_attributes>GrupoDeFiguras
+-
+-
++ mostrarInfoDeFiguras(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>513</x><y>19</y><w>228</w><h>152</h></coordinates><panel_attributes>/Figura/
+-
+- color: String
+-
+/+area(): double/
+/+perimetro(): double/</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>342</x><y>95</y><w>209</w><h>95</h></coordinates><panel_attributes>lt=&lt;-
+m1=*
+-figuras</panel_attributes><additional_attributes>90;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>228</x><y>323</y><w>247</w><h>190</h></coordinates><panel_attributes>Circunferencia
+-
+- radio: double
+-
++area(): double
++perimetro(): double</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>513</x><y>323</y><w>247</w><h>190</h></coordinates><panel_attributes>Rectangulo
+-
+- largo: double
+- ancho: double
+-
++area(): double
++perimetro(): double</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>798</x><y>323</y><w>247</w><h>190</h></coordinates><panel_attributes>TrianguloEquilatero
+-
+- lado: double
+-
++area(): double
++perimetro(): double</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>304</x><y>152</y><w>304</w><h>209</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>140;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>665</x><y>152</y><w>285</w><h>209</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;130;90</additional_attributes></element><element><id>Relation</id><coordinates><x>608</x><y>152</y><w>57</w><h>209</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element></diagram>

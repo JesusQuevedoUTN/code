@@ -18,7 +18,5 @@ public class Electrica extends Bicicleta {
     public String toString() {
         return "Electrica{" + "potencia=" + potencia + '}';
     }
-    
-    
 
 }

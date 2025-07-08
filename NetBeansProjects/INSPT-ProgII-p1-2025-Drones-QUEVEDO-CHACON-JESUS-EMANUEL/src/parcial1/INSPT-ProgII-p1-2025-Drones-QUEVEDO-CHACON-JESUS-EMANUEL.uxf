@@ -1,0 +1,55 @@
+<diagram program="umletino" version="15.1"><zoom_level>9</zoom_level><element><id>UMLClass</id><coordinates><x>207</x><y>306</y><w>171</w><h>90</h></coordinates><panel_attributes>Paquete
+--
+- peso: double
+- volumenCm3: double
+--
++ Paquete(double, double)
++ getPeso(): double</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>117</x><y>153</y><w>198</w><h>108</h></coordinates><panel_attributes>Empresa
+--
+--
++ agregarDron(Dron): void
++ elegirDron(double, Paquete): Dron
++ elegirDron(double, double): Dron
++encenderDrones():void
++ apagarDrones(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>405</x><y>171</y><w>243</w><h>180</h></coordinates><panel_attributes>/Dron/
+--
+- id: String
+- bateriaActual: double
+- consumoPorMinuto: double
+- consumoPorKm: double
+- MINUTOS_DE_AUTONOMIA:int =10
+--
++ Dron(String, double, double, double)
++ elegir
++getBateriaActual():double
++getConsumoPorKm():double
++bateriaNecesaria(double:distancia):double
++descontarBateria()
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>306</x><y>180</y><w>117</w><h>45</h></coordinates><panel_attributes>lt=&lt;-
+- drones
+m1=0..n</panel_attributes><additional_attributes>110;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>162</x><y>252</y><w>63</w><h>126</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>50;120;10;120;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>702</x><y>171</y><w>243</w><h>108</h></coordinates><panel_attributes>Camara
+--
+- consumoPorMinutoDeGrabacion: double
+--
++apagar():void
++bateriaNecesaria(double:minutosDeFlmacion):double</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>522</x><y>468</y><w>423</w><h>99</h></coordinates><panel_attributes>Filmador
+--
+
+--
++tieneSuficienteBateria(double:distancia, double:minutosDeFilmacion):boolean
++apagar():void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>189</x><y>468</y><w>270</w><h>135</h></coordinates><panel_attributes>Repartidor
+--
+
+--
++tieneSuficienteBateria(double:distancia):boolean
++soportaElPeso(Paquete:paquete):boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>558</x><y>342</y><w>153</w><h>144</h></coordinates><panel_attributes>lt=&lt;&lt;-
+</panel_attributes><additional_attributes>10;10;150;140</additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>342</y><w>144</w><h>144</h></coordinates><panel_attributes>lt=&lt;&lt;-
+</panel_attributes><additional_attributes>140;10;10;140</additional_attributes></element><element><id>Relation</id><coordinates><x>747</x><y>270</y><w>72</w><h>216</h></coordinates><panel_attributes>lt=&lt;-
+- camara
+m1=1</panel_attributes><additional_attributes>10;10;10;220</additional_attributes></element><element><id>Relation</id><coordinates><x>288</x><y>387</y><w>27</w><h>99</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>513</x><y>99</y><w>81</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>70;10;10;80</additional_attributes></element><element><id>UMLClass</id><coordinates><x>522</x><y>9</y><w>279</w><h>99</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
+Energizable
+--
++encender():void
++apagar():void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>738</x><y>99</y><w>72</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;60;80</additional_attributes></element></diagram>

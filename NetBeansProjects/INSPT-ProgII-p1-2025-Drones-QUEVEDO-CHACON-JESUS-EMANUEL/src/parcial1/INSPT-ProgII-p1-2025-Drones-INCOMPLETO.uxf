@@ -1,0 +1,22 @@
+<diagram program="umletino" version="15.1"><zoom_level>12</zoom_level><element><id>UMLClass</id><coordinates><x>288</x><y>394</y><w>228</w><h>120</h></coordinates><panel_attributes>Paquete
+--
+- peso: double
+- volumenCm3: double
+--
++ Paquete(double, double)
++ getPeso(): double</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>168</x><y>250</y><w>264</w><h>120</h></coordinates><panel_attributes>Empresa
+--
+--
++ agregarDron(Dron): void
++ elegirDron(double, Paquete): Dron
++ elegirDron(double, double): Dron
++ apagarDrones(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>552</x><y>250</y><w>288</w><h>132</h></coordinates><panel_attributes>Dron
+--
+- id: String
+- bateriaActual: double
+- consumoPorMinuto: double
+- consumoPorKm: double
+--
++ Dron(String, double, double, double)</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>420</x><y>286</y><w>156</w><h>60</h></coordinates><panel_attributes>lt=&lt;-
+- drones
+m1=0..n</panel_attributes><additional_attributes>110;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>228</x><y>358</y><w>84</w><h>132</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>50;90;10;90;10;10</additional_attributes></element></diagram>

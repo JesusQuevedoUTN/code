@@ -1,6 +1,7 @@
 package infracciones;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 /**
  * Código generado por la app UXFtoJava by Charly Cimino
@@ -21,7 +22,7 @@ public class MalEstacionamiento extends Infraccion {
     }
 
     public boolean caduco() {
-        return super.getFecha().plusDays(365).isBefore(LocalDate.now());
+        return Period.between(super.getFecha(), LocalDate.now()).getYears() < 1;
     }
 
 }

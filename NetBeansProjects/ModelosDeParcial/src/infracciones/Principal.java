@@ -1,6 +1,7 @@
 package infracciones;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.Period;
 import java.util.ArrayList;
 
@@ -18,7 +19,7 @@ public class Principal {
         // Reclamos NO caducados (Mal estacionamiento recientes)
         reclamos.add(new Reclamo(45678901, new MalEstacionamiento(LocalDate.now().minusDays(200))));
         reclamos.add(new Reclamo(56789012, new MalEstacionamiento(LocalDate.now().minusDays(50))));
-
+/*
         ///////////////////////////
         LocalDate fechaPasada = LocalDate.of(2024, 9, 25);
         LocalDate hoy = LocalDate.now();
@@ -27,12 +28,12 @@ public class Principal {
                            diferencia.getMonths() + " meses y " +
                            diferencia.getDays() + " días.");
         ///////////////////////////
-        
+*/      
         // Exceso de Velocidad (nunca caducan)
-        reclamos.add(new Reclamo(67890123, new ExcesoDeVelocidad(LocalDate.now().minusDays(1000))));
-        reclamos.add(new Reclamo(78901234, new ExcesoDeVelocidad(LocalDate.now().minusDays(700))));
-        reclamos.add(new Reclamo(89012345, new ExcesoDeVelocidad(LocalDate.now().minusDays(30))));
-        reclamos.add(new Reclamo(90123456, new ExcesoDeVelocidad(LocalDate.now().minusDays(1))));
+        reclamos.add(new Reclamo(67890123, new ExcesoDeVelocidad(LocalDate.of(2020, 1, 1))));
+        reclamos.add(new Reclamo(78901234, new ExcesoDeVelocidad(LocalDate.of(2023, 12, 12))));
+        reclamos.add(new Reclamo(89012345, new ExcesoDeVelocidad(LocalDate.of(2025, 7, 7))));
+        reclamos.add(new Reclamo(90123456, new ExcesoDeVelocidad(LocalDate.of(2024, 12, 1))));
         reclamos.add(new Reclamo(91234567, new ExcesoDeVelocidad(LocalDate.now())));
 
         SistemaDeInfraccionDeTransito sistema = new SistemaDeInfraccionDeTransito(reclamos);

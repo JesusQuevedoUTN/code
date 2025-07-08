@@ -1,44 +1,45 @@
-<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><element><id>UMLClass</id><coordinates><x>104</x><y>24</y><w>240</w><h>152</h></coordinates><panel_attributes>CoCode
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><element><id>UMLClass</id><coordinates><x>184</x><y>76</y><w>296</w><h>152</h></coordinates><panel_attributes>Sophie
 --
 
 --
-+programasPorDebajoDe(int):ArrayList</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>496</x><y>40</y><w>248</w><h>184</h></coordinates><panel_attributes>Programa
++programasPorDebajoDe(int:calidadMinima):ArrayList</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>592</x><y>92</y><w>320</w><h>128</h></coordinates><panel_attributes>Programa
 --
 -id: int
 -nombre: String
 -nombreDelResponsable: String
--pasoLasPruebas: boolean
+-pasoLasPruebas: int
 -
-+mostrarDetalleDeMetodo()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>488</x><y>296</y><w>208</w><h>128</h></coordinates><panel_attributes>/Fuente/
---
--id: int
--nombre: String
--nombreDelResponsable: String
--pasoLasPruebas: boolean
--fuentes: ArrayList
--
-/+indiceCalidad():void/</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>600</x><y>216</y><w>64</w><h>96</h></coordinates><panel_attributes>lt=&lt;-
-m1=*
--fuentes</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>336</x><y>72</y><w>176</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-m1=*
--programas</panel_attributes><additional_attributes>200;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>368</x><y>536</y><w>208</w><h>128</h></coordinates><panel_attributes>FuenteDeLenguajeDeProgramacion
++mostrarDetalleDeMetodo(String:nombre):void
++listadoFuentesMayoresAlPromedio(int:calidadMinima):ArrayList
++indiceCalidad():double</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>584</x><y>292</y><w>208</w><h>112</h></coordinates><panel_attributes>/Fuente/
 --
 -nombre:String
 -ubicacion:String
+-
++indiceCalidad():double</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>696</x><y>212</y><w>64</w><h>96</h></coordinates><panel_attributes>lt=&lt;-
+m1=*
+-fuentes</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>472</x><y>124</y><w>136</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+m1=*
+-programas</panel_attributes><additional_attributes>150;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>472</x><y>548</y><w>208</w><h>128</h></coordinates><panel_attributes>FuenteDeLenguajeDeProgramacion
 --
-+indiceCalidad():void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>640</x><y>536</y><w>208</w><h>128</h></coordinates><panel_attributes>FuenteDeLenguajeDeMarcado
+
 --
--nombre:String
--ubicacion:String
--peso:int
---
-+indiceCalidad():void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>56</x><y>536</y><w>208</w><h>128</h></coordinates><panel_attributes>Metodo
++indiceCalidad():double</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>136</x><y>548</y><w>208</w><h>128</h></coordinates><panel_attributes>Metodo
 --
 -nombre:String
 -cantidadDeParametros:int
 -cantidadDeInstrucciones:int
 -cantidadDeRamificacionesDeLujo:int
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>256</x><y>568</y><w>128</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
++indiceCalidad():double</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>336</x><y>580</y><w>152</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
 m1=1..*
--metodos</panel_attributes><additional_attributes>10;20;140;20</additional_attributes></element><element><id>Relation</id><coordinates><x>552</x><y>416</y><w>24</w><h>136</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;150</additional_attributes></element><element><id>Relation</id><coordinates><x>664</x><y>416</y><w>24</w><h>136</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;150</additional_attributes></element></diagram>
+-metodos</panel_attributes><additional_attributes>10;20;170;20</additional_attributes></element><element><id>Relation</id><coordinates><x>672</x><y>348</y><w>328</w><h>328</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>150;10;390;10;390;390;10;390</additional_attributes></element><element><id>Relation</id><coordinates><x>784</x><y>380</y><w>72</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;70;10;70;130</additional_attributes></element><element><id>UMLClass</id><coordinates><x>304</x><y>308</y><w>200</w><h>128</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+Calificable
+--
+
+--
+/+indiceCalidad():double/</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>296</x><y>428</y><w>56</w><h>136</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>50;10;10;150</additional_attributes></element><element><id>Relation</id><coordinates><x>496</x><y>356</y><w>104</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;110;10</additional_attributes></element><element><id>Relation</id><coordinates><x>448</x><y>212</y><w>224</w><h>112</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;120;260;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>712</x><y>492</y><w>208</w><h>128</h></coordinates><panel_attributes>FuenteDeLenguajeDeMarcado
+--
+-peso:int
+--
++indiceCalidad():double</panel_attributes><additional_attributes></additional_attributes></element></diagram>

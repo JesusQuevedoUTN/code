@@ -1,0 +1,48 @@
+<diagram program="umletino" version="15.1"><zoom_level>9</zoom_level><help_text>lt=&lt;-
+-usuario comprador
+-usuario vendedor</help_text><element><id>UMLClass</id><coordinates><x>2</x><y>81</y><w>351</w><h>126</h></coordinates><panel_attributes>TodoLibre
+--
+
+--
++porcentajeDeOrdenesEnComuna(int: numeroDeComuna):double
++enviogratis():int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>461</x><y>99</y><w>180</w><h>117</h></coordinates><panel_attributes>Usuario
+--
+-id:int
+-nombre:String
+-apellido: String
+-mail:String
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>479</x><y>306</y><w>180</w><h>117</h></coordinates><panel_attributes>/OrdenDeCompra/
+--
+-numero:int
+-monto:double
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>767</x><y>99</y><w>180</w><h>117</h></coordinates><panel_attributes>Domicilio
+--
+-calle:String
+-altura:int
+-comuna:int
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>632</x><y>135</y><w>153</w><h>36</h></coordinates><panel_attributes>lt=&lt;-
+-domicilio</panel_attributes><additional_attributes>150;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>344</x><y>135</y><w>135</w><h>45</h></coordinates><panel_attributes>lt=&lt;-
+-usuarios
+m1=*</panel_attributes><additional_attributes>130;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>344</x><y>180</y><w>162</w><h>198</h></coordinates><panel_attributes>lt=&lt;-
+-ordenesAEnviar
+m1=*</panel_attributes><additional_attributes>150;190;70;190;70;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>182</x><y>333</y><w>180</w><h>108</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+Entregable
+--
++origen():Domicilio
++destino():Domicilio
++envioGratis():boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>389</x><y>504</y><w>180</w><h>117</h></coordinates><panel_attributes>PuertaAPuerta
+--
+
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>596</x><y>504</y><w>180</w><h>117</h></coordinates><panel_attributes>RetiroEnPersona
+--
+
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>488</x><y>414</y><w>63</w><h>108</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>50;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>596</x><y>414</y><w>72</w><h>108</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;60;100</additional_attributes></element><element><id>Relation</id><coordinates><x>767</x><y>207</y><w>171</w><h>360</h></coordinates><panel_attributes>lt=&lt;-
+-sucursal</panel_attributes><additional_attributes>120;10;120;380;10;380</additional_attributes></element><element><id>Relation</id><coordinates><x>353</x><y>387</y><w>144</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;.
+</panel_attributes><additional_attributes>10;20;140;20</additional_attributes></element><element><id>Relation</id><coordinates><x>542</x><y>207</y><w>90</w><h>117</h></coordinates><panel_attributes>lt=&lt;-
+-vendedor
+-comprador</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element></diagram>

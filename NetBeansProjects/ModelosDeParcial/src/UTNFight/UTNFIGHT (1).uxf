@@ -1,0 +1,51 @@
+<diagram program="umletino" version="15.1"><zoom_level>5</zoom_level><element><id>Relation</id><coordinates><x>299</x><y>350</y><w>65</w><h>50</h></coordinates><panel_attributes>lt=&lt;-
+-personajeFavorito</panel_attributes><additional_attributes>10;80;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>244</x><y>295</y><w>115</w><h>60</h></coordinates><panel_attributes>Jugador
+--
+-id:String
+--
++getResumenDePartidas():Resumen</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>259</x><y>390</y><w>95</w><h>60</h></coordinates><panel_attributes>/Personaje/
+--
+-nombre:String
+-puntosDeVida: int = 100
+--
+/+ataque(Personaje)/
++defensa(ataque:int)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>209</x><y>475</y><w>115</w><h>60</h></coordinates><panel_attributes>Guerrero
+--
+-fuerza:int
+-ataque:double
+--
++ataque(Personaje)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>334</x><y>475</y><w>115</w><h>60</h></coordinates><panel_attributes>Arquero
+--
+-cantidadDeFlechas:int
+-potenciaDeArco:double
+--
++ataque(Personaje)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>294</x><y>445</y><w>15</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>339</x><y>445</y><w>15</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>UMLClass</id><coordinates><x>434</x><y>355</y><w>115</w><h>60</h></coordinates><panel_attributes>Partida
+--
+
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>354</x><y>320</y><w>115</w><h>45</h></coordinates><panel_attributes>lt=&lt;-
+-historialDePartidas
+m1=*</panel_attributes><additional_attributes>200;70;200;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>249</x><y>95</y><w>115</w><h>60</h></coordinates><panel_attributes>Main
+--
+
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>224</x><y>190</y><w>155</w><h>60</h></coordinates><panel_attributes>UTNFight
+--
+
+--
++batallar(jugador1: String, jugador2: String):void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>299</x><y>150</y><w>15</w><h>50</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;80;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>299</x><y>245</y><w>45</w><h>60</h></coordinates><panel_attributes>lt=&lt;-
+-jugadores
+m1=*</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>99</x><y>295</y><w>115</w><h>60</h></coordinates><panel_attributes>Resumen
+--
+-camtVictorias: int
+-camtDerrotas: int
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>209</x><y>315</y><w>45</w><h>15</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;10;70;10</additional_attributes></element><element><id>Relation</id><coordinates><x>354</x><y>295</y><w>145</w><h>70</h></coordinates><panel_attributes>lt=&lt;-
+-contrincante</panel_attributes><additional_attributes>10;20;270;20;270;120</additional_attributes></element><element><id>UMLClass</id><coordinates><x>474</x><y>460</y><w>115</w><h>60</h></coordinates><panel_attributes>&lt;&lt;enum&gt;&gt;
+ResultadoDePartida
+--
++VICTORIA
++DERROTA</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>499</x><y>410</y><w>45</w><h>60</h></coordinates><panel_attributes>lt=&lt;-
+-resultado</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element></diagram>
